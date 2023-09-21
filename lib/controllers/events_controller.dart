@@ -161,10 +161,13 @@ class EventController extends BaseApiController {
   }
 
   //game id :  nfl
-  Future<List<NflGameData>> getNflEvents({required String date}) async {
+  Future<List<NflGameData>> getNflEvents({required String date,required int page}) async {
+    nflEventloading.value = false;
     try {
       var response = await getDio()!.get(
-        "2/events/$date",
+        "2/events/$date",queryParameters: {
+          "page":page.toString()
+        }
       );
       NflGame nfl = NflGame.fromJson(response.data);
       nflGame.value = nfl;

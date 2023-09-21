@@ -26,6 +26,7 @@ class PickOddsPage extends StatefulWidget {
 class _PickOddsPageState extends State<PickOddsPage> {
   int currentIndex = 0;
   String today = "";
+  String selectedDate = "";
   final SplashController _splashController = Get.find<SplashController>();
   var gamename;
   List<GamesTab> games = [
@@ -65,6 +66,7 @@ class _PickOddsPageState extends State<PickOddsPage> {
     final String apiFormattedDate = apiFormat.format(DateTime.now());
     currentMonth.add(CalenderModel("Today", apiFormattedDate, true));
     today = apiFormattedDate;
+    selectedDate = apiFormattedDate;
 
     for (int i = 1; i <= 15; i++) {
       DateTime day = now.add(Duration(days: i));
@@ -84,7 +86,60 @@ class _PickOddsPageState extends State<PickOddsPage> {
     switch (tabs.elementAt(viewIndex).name) {
       case "Scores/Odds":
         setState(() {});
-        return const ScoreTab();
+        return Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const ScoreTab(),
+
+            //for page no
+            _splashController.currentGame.value == "NFL"
+                ? eventController.nflGame.value.meta!.lastPage! > 1
+                    ? Container(
+                        margin: const EdgeInsets.all(16),
+                        height: 30,
+                        child: ListView.separated(
+                            shrinkWrap: true,
+                            primary: false,
+                            scrollDirection: Axis.horizontal,
+                            itemBuilder: (context, index) {
+                              return InkWell(
+                                onTap: () {
+                                  eventController.getNflEvents(
+                                      date: "", page: index + 1);
+                                },
+                                child: Container(
+                                  alignment: Alignment.center,
+                                  color: ProjectColors.primaryColor,
+                                  height: 30,
+                                  width: 30,
+                                  child: Text(
+                                    "${index + 1}",
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                        fontSize: 14,
+                                        color: eventController.nflGame.value
+                                                    .meta!.currentPage! ==
+                                                index + 1
+                                            ? ProjectColors
+                                                .bottomnavselectedcolor
+                                            : Colors.white),
+                                  ),
+                                ),
+                              );
+                            },
+                            separatorBuilder: (context, index) {
+                              return Container(
+                                color: Colors.white,
+                                width: 10,
+                              );
+                            },
+                            itemCount:
+                                eventController.nflGame.value.meta!.lastPage!),
+                      )
+                    : const SizedBox.shrink()
+                : const SizedBox.shrink()
+          ],
+        );
 
       case "News":
         setState(() {});
@@ -116,7 +171,7 @@ class _PickOddsPageState extends State<PickOddsPage> {
       eventController.getNcaafEvents(date: today);
     } else if (_splashController.currentGame == "NFL") {
       eventController.nflEventloading.value = false;
-      eventController.getNflEvents(date: today);
+      eventController.getNflEvents(date: today, page: 1);
     } else if (_splashController.currentGame == "MLB") {
       eventController.mlbEventloading.value = false;
       eventController.getMlbEvents(date: today);
@@ -208,7 +263,8 @@ class _PickOddsPageState extends State<PickOddsPage> {
                                 _splashController.currentGame.value = "NFL";
                                 _splashController.update();
                                 eventController.nflEventloading.value = false;
-                                eventController.getNflEvents(date: today);
+                                eventController.getNflEvents(
+                                    date: today, page: 1);
                               } else if (games.elementAt(index).name == "NBA") {
                                 _splashController.currentBottom.value = 3;
                                 _splashController.currentGame.value = "NBA";
@@ -350,7 +406,8 @@ class _PickOddsPageState extends State<PickOddsPage> {
                           } else if (_splashController.currentGame == "NFL") {
                             eventController.nflEventloading.value = false;
                             eventController.getNflEvents(
-                                date: currentMonth[index].apiFormattedDate);
+                                date: currentMonth[index].apiFormattedDate,
+                                page: 1);
                           } else if (_splashController.currentGame == "MLB") {
                             eventController.mlbEventloading.value = false;
                             eventController.getMlbEvents(

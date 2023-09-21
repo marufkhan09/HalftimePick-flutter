@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:halftimepick/controllers/events_controller.dart';
 import 'package:halftimepick/controllers/splash_controller.dart';
+import 'package:halftimepick/utils/colors.dart';
 import 'package:halftimepick/views/screens/scores/scoreItem.dart';
 
 class ScoreTab extends StatefulWidget {
@@ -200,33 +201,36 @@ class _ScoreTabState extends State<ScoreTab> {
                                       builder: (controller) {
                                       return controller.nflEventloading.value
                                           ? controller.nflgamedata.isNotEmpty
-                                              ? ListView.separated(
-                                                  scrollDirection:
-                                                      Axis.vertical,
-                                                  shrinkWrap: true,
-                                                  primary: false,
-                                                  separatorBuilder:
-                                                      (context, index) {
-                                                    return const SizedBox(
-                                                      height: 5,
-                                                    );
-                                                  },
-                                                  itemBuilder:
-                                                      (BuildContext context,
-                                                          int index) {
-                                                    return InkWell(
-                                                        // onTap: () {
-                                                        //   Get.toNamed(
-                                                        //       scoredetailPage);
-                                                        // },
-                                                        child: ScoreItem(
-                                                      item: controller
-                                                          .nflgamedata
-                                                          .elementAt(index),
-                                                    ));
-                                                  },
-                                                  itemCount: controller
-                                                      .nflgamedata.length,
+                                              ? Column(
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.start,
+                                                  children: [
+                                                    ListView.separated(
+                                                      scrollDirection:
+                                                          Axis.vertical,
+                                                      shrinkWrap: true,
+                                                      primary: false,
+                                                      separatorBuilder:
+                                                          (context, index) {
+                                                        return const SizedBox(
+                                                          height: 5,
+                                                        );
+                                                      },
+                                                      itemBuilder:
+                                                          (BuildContext context,
+                                                              int index) {
+                                                        return InkWell(
+                                                            child: ScoreItem(
+                                                          item: controller
+                                                              .nflgamedata
+                                                              .elementAt(index),
+                                                        ));
+                                                      },
+                                                      itemCount: controller
+                                                          .nflgamedata.length,
+                                                    ),
+                                                    //for page
+                                                  ],
                                                 )
                                               : Center(
                                                   heightFactor: 3,
@@ -350,9 +354,4 @@ class _ScoreTabState extends State<ScoreTab> {
   }
 }
 
-class GameWeek {
-  const GameWeek(this.date, this.week, this.isselected);
-  final String week;
-  final String date;
-  final bool isselected;
-}
+

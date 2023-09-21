@@ -79,7 +79,7 @@ class _ScoresPageState extends State<ScoresPage>
     tabController = TabController(length: 3, vsync: this);
     calender();
     eventController.getNcaafEvents(date: today);
-    eventController.getNflEvents(date: today);
+    eventController.getNflEvents(date: today,page: 1);
     eventController.getMlbEvents(date: today);
     eventController.getNbaEvents(date: today);
     eventController.getNcaabEvents(date: today);
@@ -200,7 +200,7 @@ class _ScoresPageState extends State<ScoresPage>
                           date: currentMonth[index].apiFormattedDate);
                       eventController.nflEventloading.value = false;
                       eventController.getNflEvents(
-                          date: currentMonth[index].apiFormattedDate);
+                          date: currentMonth[index].apiFormattedDate,page: 1);
 
                       eventController.mlbEventloading.value = false;
                       eventController.getMlbEvents(
