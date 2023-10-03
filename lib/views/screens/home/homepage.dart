@@ -51,9 +51,55 @@ class _HomePageState extends State<HomePage> {
                       itemBuilder: (BuildContext context, int index) {
                         return InkWell(
                           onTap: () {
-                            splashController.selectedGameIndex.value = index;
+                            /*     splashController.selectedGameIndex.value = index;
                             splashController.currentBottom.value = 1;
-                            splashController.update();
+                            splashController.update(); */
+
+                            if (controller.sports.elementAt(index).sportName! ==
+                                "NCAA Football") {
+                              splashController.currentBottom.value = 3;
+                              splashController.currentGame.value = "NCAAF";
+                              splashController.update();
+                            } else if (controller.sports
+                                    .elementAt(index)
+                                    .sportName! ==
+                                "NFL") {
+                              splashController.currentBottom.value = 3;
+                              splashController.currentGame.value = "NFL";
+                              splashController.update();
+                            } else if (controller.sports
+                                    .elementAt(index)
+                                    .sportName! ==
+                                "MLB") {
+                              splashController.currentBottom.value = 3;
+                              splashController.currentGame.value = "MLB";
+                              splashController.update();
+                            } else if (controller.sports
+                                    .elementAt(index)
+                                    .sportName! ==
+                                "NBA") {
+                              splashController.currentBottom.value = 3;
+                              splashController.currentGame.value = "NBA";
+                              splashController.update();
+                            } else if (controller.sports
+                                    .elementAt(index)
+                                    .sportName! ==
+                                "NCAA Men's Basketball") {
+                              splashController.currentBottom.value = 3;
+                              splashController.currentGame.value = "NCAAB";
+                              splashController.update();
+                            } else if (controller.sports
+                                    .elementAt(index)
+                                    .sportName! ==
+                                "NHL") {
+                              splashController.currentBottom.value = 3;
+                              splashController.currentGame.value = "NHL";
+                              splashController.update();
+                            } else {
+                              splashController.currentBottom.value = 3;
+                              splashController.currentGame.value = "WNBA";
+                              splashController.update();
+                            }
                           },
                           child: Container(
                             color: ProjectColors.primaryColor,

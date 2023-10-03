@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -67,7 +65,12 @@ class EventController extends BaseApiController {
       NcaafGames ncaaf = NcaafGames.fromJson(response.data);
       ncaafGame.value = ncaaf;
       ncaafgamedata.clear();
-      ncaafgamedata.value = ncaafGame.value.data!;
+      ncaafGame.value.data!.forEach((element) {
+        if (element.teamsNormalized![0].divisionId == 1) {
+          ncaafgamedata.add(element);
+        }
+      });
+      //  ncaafgamedata.value = ncaafGame.value.data!;
       ncaafEventloading.value = true;
       update();
       print(response.toString());
