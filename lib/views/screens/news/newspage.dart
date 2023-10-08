@@ -21,27 +21,36 @@ class NewsPage extends StatefulWidget {
 class _NewsPageState extends State<NewsPage> {
   final NewsController newsController = Get.put(NewsController());
   final SplashController splashController = Get.find<SplashController>();
-  List<String> images = [
-    "5.png", //NCAAF
-    "7.png", //NFL
-    "mlb.png", // MLB
-    "1.png", //NBA
-    "6.png", //NCAAB
-    "4.png", //NHL
+  // List<String> images = [
+  //   "5.png", //NCAAF
+  //   "7.png", //NFL
+  //   "mlb.png", // MLB
+  //   "1.png", //NBA
+  //   "6.png", //NCAAB
+  //   "4.png", //NHL
 
-    "2.png", //WNBA
-  ];
+  //   "2.png", //WNBA
+  // ];
+  // List<Games> gamename = [
+  //   Games(name: "NCAA Football", isselected: false),
+  //   Games(
+  //     name: "NFL",
+  //     isselected: false,
+  //   ),
+  //   Games(name: "MLB", isselected: false),
+  //   Games(name: "NBA", isselected: false),
+  //   Games(name: "NCAAB", isselected: false),
+  //   Games(name: "NHL", isselected: false),
+  //   Games(name: "WNBA", isselected: false),
+  // ];
+
   List<Games> gamename = [
-    Games(name: "NCAA Football", isselected: false),
-    Games(
-      name: "NFL",
-      isselected: false,
-    ),
-    Games(name: "MLB", isselected: false),
     Games(name: "NBA", isselected: false),
-    Games(name: "NCAAB", isselected: false),
     Games(name: "NHL", isselected: false),
-    Games(name: "WNBA", isselected: false),
+  ];
+  List<String> images = [
+    "1.png", //NBA
+    "4.png", //NHL
   ];
 
   static const tiles = [
@@ -75,9 +84,7 @@ class _NewsPageState extends State<NewsPage> {
 
   @override
   void initState() {
-    print("SELECTED::" + splashController.selectedGameIndex.value.toString());
-    gamename.elementAt(splashController.selectedGameIndex.value).isselected =
-        true;
+    gamename.elementAt(0).isselected = true;
     newsController.getNBANews().then((value) {
       if (value.length > 0 && tiles.length > value.length) {
         for (int i = 0; i < value.length; i++) {
@@ -187,7 +194,7 @@ class _NewsPageState extends State<NewsPage> {
           height: 1,
           color: Colors.grey,
         ),
-        gamename.elementAt(3).isselected
+        gamename.elementAt(0).isselected
             ? GetBuilder<NewsController>(builder: (controller) {
                 return controller.nbanewsAvailable.isTrue
                     ? controller.nbanewslist.isNotEmpty
@@ -245,7 +252,7 @@ class _NewsPageState extends State<NewsPage> {
                           color: Colors.grey,
                         ));
               })
-            : gamename.elementAt(5).isselected
+            : gamename.elementAt(1).isselected
                 ? GetBuilder<NewsController>(builder: (controller) {
                     return controller.nhlnewsAvailable.isTrue
                         ? controller.nhlnewslist.isNotEmpty

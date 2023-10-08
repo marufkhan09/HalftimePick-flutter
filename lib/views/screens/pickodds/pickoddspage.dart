@@ -6,12 +6,9 @@ import 'package:halftimepick/controllers/events_controller.dart';
 import 'package:halftimepick/controllers/splash_controller.dart';
 import 'package:halftimepick/models/calendermodel.dart';
 import 'package:halftimepick/utils/colors.dart';
-import 'package:halftimepick/views/screens/pickodds/chattab/chat.dart';
 import 'package:halftimepick/views/screens/pickodds/newstab/news.dart';
 import 'package:halftimepick/views/screens/pickodds/pickoddstab/pickodds.dart';
 import 'package:halftimepick/views/screens/pickodds/scorestab/score.dart';
-import 'package:halftimepick/views/screens/pickodds/standingtab/standing.dart';
-import 'package:halftimepick/views/screens/pickodds/statstab/stats.dart';
 import 'package:halftimepick/views/screens/scores/scorespage.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 import 'package:intl/date_symbol_data_local.dart';
@@ -27,7 +24,6 @@ class _PickOddsPageState extends State<PickOddsPage> {
   int currentIndex = 0;
   String today = "";
   final SplashController _splashController = Get.find<SplashController>();
-  var gamename;
   List<GamesTab> games = [
     GamesTab("NFL", false),
     GamesTab("NBA", false),
@@ -41,10 +37,10 @@ class _PickOddsPageState extends State<PickOddsPage> {
   List<Tabs> tabs = [
     Tabs("Scores/Odds", false),
     Tabs("News", false),
-    Tabs("Chat", false),
+    //  Tabs("Chat", false),
     Tabs("Pick", false),
-    Tabs("Standings", false),
-    Tabs("Stats", false),
+    // Tabs("Standings", false),
+    // Tabs("Stats", false),
   ];
   List<CalenderModel> currentMonth = [];
   List<CalenderModel> calender() {
@@ -89,18 +85,18 @@ class _PickOddsPageState extends State<PickOddsPage> {
       case "News":
         setState(() {});
         return const NewsTab();
-      case "Chat":
-        setState(() {});
-        return const ChatTab();
+      // case "Chat":
+      //   setState(() {});
+      //   return const ChatTab();
       case "Pick":
         setState(() {});
         return const PickTab();
-      case "Standings":
-        setState(() {});
-        return const StandingTab();
-      case "Stats":
-        setState(() {});
-        return const StatsTab();
+      // case "Standings":
+      //   setState(() {});
+      //   return const StandingTab();
+      // case "Stats":
+      //   setState(() {});
+      //   return const StatsTab();
       default:
     }
   }
@@ -157,7 +153,9 @@ class _PickOddsPageState extends State<PickOddsPage> {
     return SingleChildScrollView(
       child: Column(
         children: [
-          tabs[0].isselected || tabs[3].isselected
+          tabs[0].isselected || tabs[2].isselected
+              //TODO::Commented out for future dev
+              //   || tabs[3].isselected
               ? Container(
                   color: Colors.black,
                   padding:
@@ -327,7 +325,9 @@ class _PickOddsPageState extends State<PickOddsPage> {
               },
             ),
           ),
-          tabs[0].isselected || tabs[3].isselected
+          tabs[0].isselected || tabs[2].isselected
+              //TODO:: Commented out for future dev
+              // || tabs[3].isselected
               ? Container(
                   color: Colors.black,
                   padding:

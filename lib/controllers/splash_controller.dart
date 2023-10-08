@@ -6,7 +6,7 @@ class SplashController extends BaseApiController {
   final SharedPref sharedPref = SharedPref();
   RxInt currentBottom = 0.obs;
   RxString currentGame = "".obs;
-  RxInt selectedGameIndex = 0.obs;
+  //RxInt selectedGameIndex = 0.obs;
 
   String getname() {
     var a = currentGame.value;
