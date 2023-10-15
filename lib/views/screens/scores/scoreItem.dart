@@ -10,8 +10,13 @@ class ScoreItem extends StatefulWidget {
 }
 
 class _ScoreItemState extends State<ScoreItem> {
-  bool hasMinusSign(String pointspreadhome) {
-    return pointspreadhome.startsWith("-") ? true : false;
+  bool hasMinusSign(double pointspreadhome) {
+    if (pointspreadhome < 0) {
+      print("home ");
+    } else {
+      print("away");
+    }
+    return pointspreadhome < 0 ? true : false;
   }
 
   @override
@@ -48,8 +53,6 @@ class _ScoreItemState extends State<ScoreItem> {
                             color: ProjectColors.secondaryTextColor,
                           ),
                           child: const Text(
-                            //before
-                            // "H",
                             "A",
                             style: TextStyle(
                                 fontSize: 10,
@@ -61,8 +64,6 @@ class _ScoreItemState extends State<ScoreItem> {
                           width: MediaQuery.of(context).size.width * 0.35,
                           margin: const EdgeInsets.only(left: 5),
                           child: Text(
-                            //before
-                            //  widget.item.teamsNormalized!.elementAt(1).name!,
                             widget.item.teamsNormalized!.first.name!,
                             overflow: TextOverflow.ellipsis,
                             maxLines: 1,
@@ -89,8 +90,6 @@ class _ScoreItemState extends State<ScoreItem> {
                             color: ProjectColors.secondaryTextColor,
                           ),
                           child: const Text(
-                            //before
-                            //"A",
                             "H",
                             style: TextStyle(
                                 fontSize: 10,
@@ -102,8 +101,6 @@ class _ScoreItemState extends State<ScoreItem> {
                           width: MediaQuery.of(context).size.width * 0.35,
                           margin: const EdgeInsets.only(left: 5),
                           child: Text(
-                            //before
-                            //widget.item.teamsNormalized!.elementAt(0).name!
                             widget.item.teamsNormalized!.elementAt(1).name!,
                             overflow: TextOverflow.ellipsis,
                             maxLines: 1,
@@ -133,8 +130,7 @@ class _ScoreItemState extends State<ScoreItem> {
                         "Odds",
                         style: TextStyle(color: Colors.white, fontSize: 12),
                       )),
-//                       if - 14.5 at Home than Total will be beside Away
-// if -5.5 is at Away than Total will be beside home, like this example
+
                   Container(
                     margin: const EdgeInsets.only(bottom: 5),
                     child: Row(
@@ -143,11 +139,12 @@ class _ScoreItemState extends State<ScoreItem> {
                         Container(
                           alignment: Alignment.center,
                           height: 16,
-                          //
+                          //AWAY
+                          //if - 14.5 at Home than Total will be beside Away
+                          // if -5.5 is at Away than Total will be beside home, like this example
                           child: widget.item.lines!.isNotEmpty
-                              ? hasMinusSign(widget
-                                      .item.lines!.first.spread!.pointSpreadHome
-                                      .toString())
+                              ? hasMinusSign(widget.item.lines!.first.spread!
+                                      .pointSpreadHome)
                                   ? Text(
                                       widget.item.lines!.first.total!.totalOver
                                           .toString(),
@@ -182,10 +179,10 @@ class _ScoreItemState extends State<ScoreItem> {
                         Container(
                           alignment: Alignment.center,
                           height: 16,
+                          //HOME
                           child: widget.item.lines!.isNotEmpty
-                              ? hasMinusSign(widget
-                                      .item.lines!.first.spread!.pointSpreadHome
-                                      .toString())
+                              ? hasMinusSign(widget.item.lines!.first.spread!
+                                      .pointSpreadHome)
                                   ? Text(
                                       widget.item.lines!.first.spread!
                                           .pointSpreadHome
