@@ -45,7 +45,7 @@ class EventController extends BaseApiController {
   Rx<NcaabGames> ncaabGame = NcaabGames().obs;
   RxList<NcaabGamesData> ncaabgamedata = <NcaabGamesData>[].obs;
 
-  //sports id: 6 ncaab
+  //sports id: 6 nhl
   RxBool nhlEventloading = false.obs;
   Rx<NhlGames> nhlGame = NhlGames().obs;
   RxList<NhlGamesData> nhlgamedata = <NhlGamesData>[].obs;

@@ -10,6 +10,10 @@ class ScoreItem extends StatefulWidget {
 }
 
 class _ScoreItemState extends State<ScoreItem> {
+  bool hasMinusSign(String pointspreadhome) {
+    return pointspreadhome.startsWith("-") ? true : false;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -129,6 +133,8 @@ class _ScoreItemState extends State<ScoreItem> {
                         "Odds",
                         style: TextStyle(color: Colors.white, fontSize: 12),
                       )),
+//                       if - 14.5 at Home than Total will be beside Away
+// if -5.5 is at Away than Total will be beside home, like this example
                   Container(
                     margin: const EdgeInsets.only(bottom: 5),
                     child: Row(
@@ -137,22 +143,37 @@ class _ScoreItemState extends State<ScoreItem> {
                         Container(
                           alignment: Alignment.center,
                           height: 16,
+                          //
                           child: widget.item.lines!.isNotEmpty
-                              ? Text(
-                                  widget
+                              ? hasMinusSign(widget
                                       .item.lines!.first.spread!.pointSpreadHome
-                                      .toString(),
-                                  textAlign: TextAlign.center,
-                                  style: const TextStyle(
-                                      fontSize: 12,
-                                      fontWeight: FontWeight.w500,
-                                      color: Colors.white),
-                                )
+                                      .toString())
+                                  ? Text(
+                                      widget.item.lines!.first.total!.totalOver
+                                          .toString(),
+                                      textAlign: TextAlign.center,
+                                      style: const TextStyle(
+                                          fontSize: 12,
+                                          fontWeight: FontWeight.w500,
+                                          color: Colors.white),
+                                    )
+                                  : Text(
+                                      widget.item.lines!.first.spread!
+                                          .pointSpreadAway
+                                          .toString(),
+                                      textAlign: TextAlign.center,
+                                      style: const TextStyle(
+                                          fontSize: 12,
+                                          fontWeight: FontWeight.w500,
+                                          color: Colors.white),
+                                    )
                               : const Text("-"),
                         ),
                       ],
                     ),
                   ),
+//if - 14.5 at Home than Total will be beside Away
+// if -5.5 is at Away than Total will be beside home, like this example
                   Container(
                     margin: const EdgeInsets.only(top: 5),
                     child: Row(
@@ -162,17 +183,28 @@ class _ScoreItemState extends State<ScoreItem> {
                           alignment: Alignment.center,
                           height: 16,
                           child: widget.item.lines!.isNotEmpty
-                              ? Text(
-                                  //before
-                                  //    widget.item.lines!.first.spread!.pointSpreadAway
-                                  //     .toString(),
-                                  "T:${widget.item.lines!.first.total!.totalOver.toString()}",
-                                  textAlign: TextAlign.center,
-                                  style: const TextStyle(
-                                      fontSize: 12,
-                                      fontWeight: FontWeight.w500,
-                                      color: Colors.white),
-                                )
+                              ? hasMinusSign(widget
+                                      .item.lines!.first.spread!.pointSpreadHome
+                                      .toString())
+                                  ? Text(
+                                      widget.item.lines!.first.spread!
+                                          .pointSpreadHome
+                                          .toString(),
+                                      textAlign: TextAlign.center,
+                                      style: const TextStyle(
+                                          fontSize: 12,
+                                          fontWeight: FontWeight.w500,
+                                          color: Colors.white),
+                                    )
+                                  : Text(
+                                      widget.item.lines!.first.total!.totalOver
+                                          .toString(),
+                                      textAlign: TextAlign.center,
+                                      style: const TextStyle(
+                                          fontSize: 12,
+                                          fontWeight: FontWeight.w500,
+                                          color: Colors.white),
+                                    )
                               : const Text("-"),
                         ),
                       ],

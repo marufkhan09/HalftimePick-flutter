@@ -37,7 +37,7 @@ class _LandingPageState extends State<LandingPage> {
   final List<Widget> _widgetOptions = <Widget>[
     const HomePage(),
     const NewsPage(),
-    const ScoresPage(),
+    // const ScoresPage(),
     const PickOddsPage()
   ];
 
@@ -104,7 +104,7 @@ class _LandingPageState extends State<LandingPage> {
                       height: 20,
                     ),
                   ),
-                  BottomNavigationBarItem(
+                  /*   BottomNavigationBarItem(
                     label: "Scores",
                     activeIcon: SvgPicture.asset(
                       "assets/images/scoresactive.svg",
@@ -114,7 +114,7 @@ class _LandingPageState extends State<LandingPage> {
                       "assets/images/scoreicon.svg",
                       height: 20,
                     ),
-                  ),
+                  ), */
                   BottomNavigationBarItem(
                     label: "Pick/Odds",
                     activeIcon: SvgPicture.asset(

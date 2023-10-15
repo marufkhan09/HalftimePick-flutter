@@ -124,31 +124,31 @@ class _ScoresPageState extends State<ScoresPage>
                         });
                         games.elementAt(index).isselected = true;
                         if (games.elementAt(index).name == "NFL") {
-                          _splashController.currentBottom.value = 3;
+                          _splashController.currentBottom.value = 2;
                           _splashController.currentGame.value = "NFL";
                           _splashController.update();
                         } else if (games.elementAt(index).name == "NBA") {
-                          _splashController.currentBottom.value = 3;
+                          _splashController.currentBottom.value = 2;
                           _splashController.currentGame.value = "NBA";
                           _splashController.update();
                         } else if (games.elementAt(index).name == "MLB") {
-                          _splashController.currentBottom.value = 3;
+                          _splashController.currentBottom.value = 2;
                           _splashController.currentGame.value = "MLB";
                           _splashController.update();
                         } else if (games.elementAt(index).name == "NHL") {
-                          _splashController.currentBottom.value = 3;
+                          _splashController.currentBottom.value = 2;
                           _splashController.currentGame.value = "NHL";
                           _splashController.update();
                         } else if (games.elementAt(index).name == "NCAAF") {
-                          _splashController.currentBottom.value = 3;
+                          _splashController.currentBottom.value = 2;
                           _splashController.currentGame.value = "NCAAF";
                           _splashController.update();
                         } else if (games.elementAt(index).name == "NCAAB") {
-                          _splashController.currentBottom.value = 3;
+                          _splashController.currentBottom.value = 2;
                           _splashController.currentGame.value = "NCAAB";
                           _splashController.update();
                         } else {
-                          _splashController.currentBottom.value = 3;
+                          _splashController.currentBottom.value = 2;
                           _splashController.currentGame.value = "WNBA";
                           _splashController.update();
                         }
@@ -267,7 +267,7 @@ class _ScoresPageState extends State<ScoresPage>
                                 ),
                                 InkWell(
                                   onTap: () {
-                                    _splashController.currentBottom.value = 3;
+                                    _splashController.currentBottom.value = 2;
                                     _splashController.currentGame.value = "NHL";
                                     _splashController.update();
                                   },
@@ -435,7 +435,7 @@ class _ScoresPageState extends State<ScoresPage>
                                       color: Colors.white),
                                   child: InkWell(
                                     onTap: () {
-                                      _splashController.currentBottom.value = 3;
+                                      _splashController.currentBottom.value = 2;
                                       _splashController.currentGame.value =
                                           "WNBA";
                                       _splashController.update();
@@ -502,7 +502,7 @@ class _ScoresPageState extends State<ScoresPage>
                                 ),
                                 InkWell(
                                   onTap: () {
-                                    _splashController.currentBottom.value = 3;
+                                    _splashController.currentBottom.value = 2;
                                     _splashController.currentGame.value = "MLB";
                                     _splashController.update();
                                   },
@@ -580,7 +580,7 @@ class _ScoresPageState extends State<ScoresPage>
                                 ),
                                 InkWell(
                                   onTap: () {
-                                    _splashController.currentBottom.value = 3;
+                                    _splashController.currentBottom.value = 2;
                                     _splashController.currentGame.value = "NFL";
                                     _splashController.update();
                                   },
@@ -658,7 +658,7 @@ class _ScoresPageState extends State<ScoresPage>
                                 ),
                                 InkWell(
                                   onTap: () {
-                                    _splashController.currentBottom.value = 3;
+                                    _splashController.currentBottom.value = 2;
                                     _splashController.currentGame.value =
                                         "NCAAF";
                                     _splashController.update();
@@ -737,7 +737,7 @@ class _ScoresPageState extends State<ScoresPage>
                                 ),
                                 InkWell(
                                   onTap: () {
-                                    _splashController.currentBottom.value = 3;
+                                    _splashController.currentBottom.value = 2;
                                     _splashController.currentGame.value =
                                         "NCAAB";
                                     _splashController.update();
