@@ -56,46 +56,46 @@ class _HomePageState extends State<HomePage> {
 
                         if (controller.gamename.elementAt(index).sportName! ==
                             "NCAA Football") {
-                          splashController.currentBottom.value = 3;
+                          splashController.currentBottom.value = 2;
                           splashController.currentGame.value = "NCAAF";
                           splashController.update();
                         } else if (controller.gamename
                                 .elementAt(index)
                                 .sportName! ==
                             "NFL") {
-                          splashController.currentBottom.value = 3;
+                          splashController.currentBottom.value = 2;
                           splashController.currentGame.value = "NFL";
                           splashController.update();
                         } else if (controller.gamename
                                 .elementAt(index)
                                 .sportName! ==
                             "MLB") {
-                          splashController.currentBottom.value = 3;
+                          splashController.currentBottom.value = 2;
                           splashController.currentGame.value = "MLB";
                           splashController.update();
                         } else if (controller.gamename
                                 .elementAt(index)
                                 .sportName! ==
                             "NBA") {
-                          splashController.currentBottom.value = 3;
+                          splashController.currentBottom.value = 2;
                           splashController.currentGame.value = "NBA";
                           splashController.update();
                         } else if (controller.gamename
                                 .elementAt(index)
                                 .sportName! ==
                             "NCAA Men's Basketball") {
-                          splashController.currentBottom.value = 3;
+                          splashController.currentBottom.value = 2;
                           splashController.currentGame.value = "NCAAB";
                           splashController.update();
                         } else if (controller.gamename
                                 .elementAt(index)
                                 .sportName! ==
                             "NHL") {
-                          splashController.currentBottom.value = 3;
+                          splashController.currentBottom.value = 2;
                           splashController.currentGame.value = "NHL";
                           splashController.update();
                         } else {
-                          splashController.currentBottom.value = 3;
+                          splashController.currentBottom.value = 2;
                           splashController.currentGame.value = "WNBA";
                           splashController.update();
                         }

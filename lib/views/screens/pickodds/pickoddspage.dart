@@ -28,7 +28,7 @@ class _PickOddsPageState extends State<PickOddsPage> {
     GamesTab("NFL", false),
     GamesTab("NBA", false),
     GamesTab("MLB", false),
-    GamesTab("NHL", true),
+    GamesTab("NHL", false),
     GamesTab("NCAAF", false),
     GamesTab("NCAAB", false),
     GamesTab("WNBA", false)
@@ -105,7 +105,7 @@ class _PickOddsPageState extends State<PickOddsPage> {
   void initState() {
     tabs[0].isselected = true;
     calender();
-    //  currentGame();
+      currentGame();
 
     if (_splashController.currentGame == "NCAAF") {
       eventController.ncaafEventloading.value = false;
@@ -132,7 +132,7 @@ class _PickOddsPageState extends State<PickOddsPage> {
     super.initState();
   }
 
-/*   currentGame() {
+   currentGame() {
     if (_splashController.currentGame.value.isEmpty &&
         _splashController.currentBottom.value == 3) {
       _splashController.currentGame.value = "NHL";
@@ -144,9 +144,9 @@ class _PickOddsPageState extends State<PickOddsPage> {
       if (element.name.toLowerCase() ==
           _splashController.currentGame.value.toLowerCase()) {
         element.isselected = true;
-      } else {}
+      } 
     });
-  } */
+  } 
 
   @override
   Widget build(BuildContext context) {
