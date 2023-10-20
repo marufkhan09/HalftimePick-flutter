@@ -80,25 +80,7 @@ class _CustomAppBarState extends State<CustomAppBar> {
           ),
           centerTitle: false,
           titleSpacing: 0.0,
-          actions: [
-            // controller.currentBottom.value == 1 ||
-            //         controller.currentBottom.value == 2
-            //     ? Container(
-            //         margin: const EdgeInsets.only(right: 10),
-            //         child: InkWell(
-            //           child: SvgPicture.asset(
-            //             "assets/images/search.svg",
-            //           ),
-            //           onTap: () {
-            //             //  Get.toNamed(friendlysearchPage);
-            //           },
-            //         ),
-            //       )
-            //     : const SizedBox.shrink(),
-            // const SizedBox(
-            //   width: 10,
-            // ),
-          ],
+          actions: [],
         ),
       );
     });
