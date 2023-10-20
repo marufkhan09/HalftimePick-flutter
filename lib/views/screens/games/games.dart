@@ -40,10 +40,6 @@ class _SpecificGamesPageState extends State<SpecificGamesPage> {
   ];
 
   currentGame() {
-    if (_splashController.currentGame.value.isEmpty &&
-        _splashController.currentBottom.value == 3) {
-      _splashController.currentGame.value = "NHL";
-    }
     games.forEach((element) {
       element.isselected = false;
     });
@@ -92,6 +88,28 @@ class _SpecificGamesPageState extends State<SpecificGamesPage> {
   void initState() {
     calender();
     currentGame();
+    if (_splashController.currentGame.value == "NCAAF") {
+      eventController.ncaafEventloading.value = false;
+      eventController.getNcaafEvents(date: today);
+    } else if (_splashController.currentGame.value == "NFL") {
+      eventController.nflEventloading.value = false;
+      eventController.getNflEvents(date: today);
+    } else if (_splashController.currentGame.value == "MLB") {
+      eventController.mlbEventloading.value = false;
+      eventController.getMlbEvents(date: today);
+    } else if (_splashController.currentGame.value == "NBA") {
+      eventController.nbaEventloading.value = false;
+      eventController.getNbaEvents(date: today);
+    } else if (_splashController.currentGame.value == "NCAAB") {
+      eventController.ncaabEventloading.value = false;
+      eventController.getNcaabEvents(date: today);
+    } else if (_splashController.currentGame.value == "WNBA") {
+      eventController.wnbaEventloading.value = false;
+      eventController.getWnbaEvents(date: today);
+    } else {
+      eventController.nhlEventloading.value = false;
+      eventController.getNhlEvents(date: today);
+    }
     super.initState();
   }
 
@@ -226,6 +244,78 @@ class _SpecificGamesPageState extends State<SpecificGamesPage> {
                               fontSize: 12,
                               color: games.elementAt(index).isselected == true
                                   ? ProjectColors.bottomnavselectedcolor
+                                  : Colors.white,
+                              fontWeight: FontWeight.w600),
+                        ),
+                      ),
+                    ),
+                  );
+                },
+              ),
+            ),
+            Container(
+              color: Colors.black,
+              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+              width: double.infinity,
+              height: 50,
+              child: ScrollablePositionedList.builder(
+                shrinkWrap: true,
+                scrollDirection: Axis.horizontal,
+                initialScrollIndex: currentMonth
+                        .indexWhere((element) => element.date == "Today") -
+                    3,
+                itemCount: currentMonth.length,
+                itemBuilder: (BuildContext context, int index) {
+                  return InkWell(
+                    onTap: () {
+                      var a = currentMonth
+                          .indexWhere((element) => element.isselected == true);
+                      setState(() {
+                        currentMonth.elementAt(a).isselected = false;
+                        currentMonth.elementAt(index).isselected = true;
+                      });
+                      if (_splashController.currentGame == "NCAAF") {
+                        eventController.ncaafEventloading.value = false;
+                        eventController.getNcaafEvents(
+                            date: currentMonth[index].apiFormattedDate);
+                      } else if (_splashController.currentGame == "NFL") {
+                        eventController.nflEventloading.value = false;
+                        eventController.getNflEvents(
+                            date: currentMonth[index].apiFormattedDate);
+                      } else if (_splashController.currentGame == "MLB") {
+                        eventController.mlbEventloading.value = false;
+                        eventController.getMlbEvents(
+                            date: currentMonth[index].apiFormattedDate);
+                      } else if (_splashController.currentGame == "NBA") {
+                        eventController.nbaEventloading.value = false;
+                        eventController.getNbaEvents(
+                            date: currentMonth[index].apiFormattedDate);
+                      } else if (_splashController.currentGame == "NCAAB") {
+                        eventController.ncaabEventloading.value = false;
+                        eventController.getNcaabEvents(
+                            date: currentMonth[index].apiFormattedDate);
+                      } else if (_splashController.currentGame == "WNBA") {
+                        eventController.wnbaEventloading.value = false;
+                        eventController.getWnbaEvents(
+                            date: currentMonth[index].apiFormattedDate);
+                      } else {
+                        eventController.nhlEventloading.value = false;
+                        eventController.getNhlEvents(
+                            date: currentMonth[index].apiFormattedDate);
+                      }
+                    },
+                    child: Container(
+                      margin: const EdgeInsets.only(left: 5, right: 5),
+                      child: Container(
+                        alignment: Alignment.center,
+                        width: 50,
+                        child: Text(
+                          currentMonth.elementAt(index).date,
+                          maxLines: 1,
+                          style: TextStyle(
+                              fontSize: 11,
+                              color: currentMonth[index].isselected == true
+                                  ? Colors.blue
                                   : Colors.white,
                               fontWeight: FontWeight.w600),
                         ),

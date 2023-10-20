@@ -63,6 +63,7 @@ class _HomePageState extends State<HomePage> {
                           splashController.currentBottom.value = 0;
                           splashController.currentGame.value = "NFL";
                           splashController.update();
+                          Get.offAllNamed(gamespage);
                         } else if (controller.gamename
                                 .elementAt(index)
                                 .sportName! ==
@@ -70,6 +71,7 @@ class _HomePageState extends State<HomePage> {
                           splashController.currentBottom.value = 0;
                           splashController.currentGame.value = "MLB";
                           splashController.update();
+                          Get.offAllNamed(gamespage);
                         } else if (controller.gamename
                                 .elementAt(index)
                                 .sportName! ==
@@ -77,6 +79,7 @@ class _HomePageState extends State<HomePage> {
                           splashController.currentBottom.value = 0;
                           splashController.currentGame.value = "NBA";
                           splashController.update();
+                          Get.offAllNamed(gamespage);
                         } else if (controller.gamename
                                 .elementAt(index)
                                 .sportName! ==
@@ -84,6 +87,7 @@ class _HomePageState extends State<HomePage> {
                           splashController.currentBottom.value = 0;
                           splashController.currentGame.value = "NCAAB";
                           splashController.update();
+                          Get.offAllNamed(gamespage);
                         } else if (controller.gamename
                                 .elementAt(index)
                                 .sportName! ==
@@ -91,10 +95,12 @@ class _HomePageState extends State<HomePage> {
                           splashController.currentBottom.value = 0;
                           splashController.currentGame.value = "NHL";
                           splashController.update();
+                          Get.offAllNamed(gamespage);
                         } else {
                           splashController.currentBottom.value = 0;
                           splashController.currentGame.value = "WNBA";
                           splashController.update();
+                          Get.offAllNamed(gamespage);
                         }
                       },
                       child: Container(
