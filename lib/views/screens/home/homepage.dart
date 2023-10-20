@@ -16,13 +16,13 @@ class _HomePageState extends State<HomePage> {
   final HomeController homeController = Get.put(HomeController());
   final SplashController splashController = Get.find<SplashController>();
   List<String> images = [
-    "7.png",
-    "2.png",
-    "1.png",
-    "mlb.png",
-    "4.png",
-    "5.png",
-    "6.png"
+    "5.png", //ncaaf
+    "7.png", //nfl
+    "mlb.png", //mlb
+    "1.png", //nba
+    "6.png", //ncaab
+    "4.png", //nhl
+    "2.png", //wnba
   ];
 
   @override
