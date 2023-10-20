@@ -105,34 +105,34 @@ class _PickOddsPageState extends State<PickOddsPage> {
   void initState() {
     tabs[0].isselected = true;
     calender();
-      currentGame();
+    currentGame();
 
-    if (_splashController.currentGame == "NCAAF") {
-      eventController.ncaafEventloading.value = false;
-      eventController.getNcaafEvents(date: today);
-    } else if (_splashController.currentGame == "NFL") {
-      eventController.nflEventloading.value = false;
-      eventController.getNflEvents(date: today);
-    } else if (_splashController.currentGame == "MLB") {
-      eventController.mlbEventloading.value = false;
-      eventController.getMlbEvents(date: today);
-    } else if (_splashController.currentGame == "NBA") {
-      eventController.nbaEventloading.value = false;
-      eventController.getNbaEvents(date: today);
-    } else if (_splashController.currentGame == "NCAAB") {
-      eventController.ncaabEventloading.value = false;
-      eventController.getNcaabEvents(date: today);
-    } else if (_splashController.currentGame == "WNBA") {
-      eventController.wnbaEventloading.value = false;
-      eventController.getWnbaEvents(date: today);
-    } else {
-      eventController.nhlEventloading.value = false;
-      eventController.getNhlEvents(date: today);
-    }
+    // if (_splashController.currentGame == "NCAAF") {
+    //   eventController.ncaafEventloading.value = false;
+    //   eventController.getNcaafEvents(date: today);
+    // } else if (_splashController.currentGame == "NFL") {
+    //   eventController.nflEventloading.value = false;
+    //   eventController.getNflEvents(date: today);
+    // } else if (_splashController.currentGame == "MLB") {
+    //   eventController.mlbEventloading.value = false;
+    //   eventController.getMlbEvents(date: today);
+    // } else if (_splashController.currentGame == "NBA") {
+    //   eventController.nbaEventloading.value = false;
+    //   eventController.getNbaEvents(date: today);
+    // } else if (_splashController.currentGame == "NCAAB") {
+    //   eventController.ncaabEventloading.value = false;
+    //   eventController.getNcaabEvents(date: today);
+    // } else if (_splashController.currentGame == "WNBA") {
+    //   eventController.wnbaEventloading.value = false;
+    //   eventController.getWnbaEvents(date: today);
+    // } else {
+    //   eventController.nhlEventloading.value = false;
+    //   eventController.getNhlEvents(date: today);
+    // }
     super.initState();
   }
 
-   currentGame() {
+  currentGame() {
     if (_splashController.currentGame.value.isEmpty &&
         _splashController.currentBottom.value == 3) {
       _splashController.currentGame.value = "NHL";
@@ -144,9 +144,9 @@ class _PickOddsPageState extends State<PickOddsPage> {
       if (element.name.toLowerCase() ==
           _splashController.currentGame.value.toLowerCase()) {
         element.isselected = true;
-      } 
+      }
     });
-  } 
+  }
 
   @override
   Widget build(BuildContext context) {

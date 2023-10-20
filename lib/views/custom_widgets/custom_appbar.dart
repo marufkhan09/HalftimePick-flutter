@@ -10,8 +10,6 @@ class CustomAppBar extends StatefulWidget implements PreferredSizeWidget {
   final bool search;
   final bool logo;
 
-//  final int index;
-
   const CustomAppBar({
     Key? key,
     required this.scaffoldkey,

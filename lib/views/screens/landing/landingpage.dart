@@ -8,7 +8,6 @@ import 'package:halftimepick/views/custom_widgets/custom_appbar.dart';
 import 'package:halftimepick/views/screens/home/homepage.dart';
 import 'package:halftimepick/views/screens/news/newspage.dart';
 import 'package:halftimepick/views/screens/pickodds/pickoddspage.dart';
-import 'package:halftimepick/views/screens/scores/scorespage.dart';
 
 class LandingPage extends StatefulWidget {
   const LandingPage({Key? key}) : super(key: key);
@@ -37,14 +36,12 @@ class _LandingPageState extends State<LandingPage> {
   final List<Widget> _widgetOptions = <Widget>[
     const HomePage(),
     const NewsPage(),
-    // const ScoresPage(),
     const PickOddsPage()
   ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      //  backgroundColor: Colors.black,
       appBar: CustomAppBar(
         scaffoldkey: _landingKey,
         search: false,
@@ -104,17 +101,6 @@ class _LandingPageState extends State<LandingPage> {
                       height: 20,
                     ),
                   ),
-                  /*   BottomNavigationBarItem(
-                    label: "Scores",
-                    activeIcon: SvgPicture.asset(
-                      "assets/images/scoresactive.svg",
-                      height: 20,
-                    ),
-                    icon: SvgPicture.asset(
-                      "assets/images/scoreicon.svg",
-                      height: 20,
-                    ),
-                  ), */
                   BottomNavigationBarItem(
                     label: "Pick/Odds",
                     activeIcon: SvgPicture.asset(

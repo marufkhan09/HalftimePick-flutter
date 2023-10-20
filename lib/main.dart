@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:halftimepick/utils/colors.dart';
 import 'package:halftimepick/utils/routes.dart';
+import 'package:halftimepick/views/screens/games/games.dart';
 import 'package:halftimepick/views/screens/home/homepage.dart';
 import 'package:halftimepick/views/screens/landing/landingpage.dart';
 import 'package:halftimepick/views/screens/news/newspage.dart';
@@ -160,6 +161,7 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
           page: () => const LandingPage(),
         ),
         GetPage(name: newsdetailwebview, page: () => const NewsDetailWebView()),
+          GetPage(name: gamespage, page: () => const SpecificGamesPage()),
       ],
     );
   }

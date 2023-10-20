@@ -1,9 +1,10 @@
-import 'package:flutter/cupertino.dart';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:halftimepick/controllers/home_controller.dart';
 import 'package:halftimepick/controllers/splash_controller.dart';
 import 'package:halftimepick/utils/colors.dart';
+import 'package:halftimepick/utils/routes.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -50,15 +51,13 @@ class _HomePageState extends State<HomePage> {
                   itemBuilder: (BuildContext context, int index) {
                     return InkWell(
                       onTap: () {
-                        /*     splashController.selectedGameIndex.value = index;
-                            splashController.currentBottom.value = 1;
-                            splashController.update(); */
 
                         if (controller.gamename.elementAt(index).sportName! ==
                             "NCAA Football") {
                           splashController.currentBottom.value = 2;
                           splashController.currentGame.value = "NCAAF";
                           splashController.update();
+                          Get.toNamed(gamespage);
                         } else if (controller.gamename
                                 .elementAt(index)
                                 .sportName! ==

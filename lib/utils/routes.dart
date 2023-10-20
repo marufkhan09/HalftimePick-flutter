@@ -79,3 +79,4 @@ const usermanual = '/usermanual';
 const sportsdetail = '/sportsdetail';
 const matchlist = '/matchlist';
 const newsdetailwebview = '/newsdetailwebview';
+const gamespage = "/gamespage";
