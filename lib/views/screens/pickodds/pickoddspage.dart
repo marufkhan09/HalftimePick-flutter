@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:halftimepick/controllers/events_controller.dart';
 import 'package:halftimepick/controllers/splash_controller.dart';
 import 'package:halftimepick/models/calendermodel.dart';
+import 'package:halftimepick/models/weekmode.dart';
 import 'package:halftimepick/utils/colors.dart';
 import 'package:halftimepick/views/screens/pickodds/pickoddstab/pickodds.dart';
 import 'package:halftimepick/views/screens/scores/scorespage.dart';
@@ -31,8 +32,28 @@ class _PickOddsPageState extends State<PickOddsPage> {
     GamesTab("WNBA", false)
   ];
   final EventController eventController = Get.put(EventController());
-
   List<CalenderModel> currentMonth = [];
+  late DateTime currentNcaafWeek;
+  late DateTime ncaafStartDate;
+  late DateTime ncaafEndDate;
+  List<WeekModel> ncaafweekModels = [];
+  late WeekModel thisNcaafWeek;
+  late WeekModel thisNflWeek;
+  late DateTime currentNflWeek;
+  List<WeekModel> nflweekModels = [];
+  late DateTime nflstartDate;
+  late DateTime nflEndDate;
+  final DateFormat dateFormat = DateFormat("yyyy-MM-dd");
+
+
+  
+  String returnDay(DateTime date) {
+    var outputFormat = DateFormat('dd MMM');
+    var output = outputFormat.format(date.toLocal());
+
+    return output.toString();
+  }
+
   List<CalenderModel> calender() {
     initializeDateFormatting();
     DateTime now = DateTime.now();
@@ -65,14 +86,102 @@ class _PickOddsPageState extends State<PickOddsPage> {
     return currentMonth;
   }
 
+  nflCalender() {
+    while (currentNflWeek.isBefore(nflEndDate)) {
+      List<DateTime> days = [];
+      currentNflWeek =
+          findNextThursday(currentNflWeek); // Find the next Thursday
+      for (int i = 0; i < 5; i++) {
+        // Iterate 5 days (Thursday to Monday)
+        days.add(currentNflWeek);
+        currentNflWeek = currentNflWeek.add(Duration(days: 1));
+      }
+
+      WeekModel week = WeekModel(
+          isSelected: false, // You can set this value as needed
+          days: days,
+          startDate: days.first,
+          endDate: days.last);
+
+      nflweekModels.add(week);
+
+      currentNflWeek =
+          currentNflWeek.add(Duration(days: 2)); // Skip Monday to Wednesday
+    }
+    print(nflweekModels);
+  }
+
+  WeekModel getCurrentWeek(List<WeekModel> weekModels, DateTime currentDate) {
+    var a = weekModels.indexWhere((element) =>
+        currentDate.isBefore(element.endDate.add(Duration(days: 1))));
+    print(a);
+    weekModels.elementAt(a).isSelected = true;
+    return WeekModel(
+        isSelected: false, // Default value if no current week is found
+        days: [],
+        startDate: DateTime.now(),
+        endDate: DateTime.now() // Empty list of days
+        );
+  }
+
+  ncaafCalender() {
+    while (currentNcaafWeek.isBefore(ncaafEndDate)) {
+      List<DateTime> days = [];
+      currentNcaafWeek =
+          findNextTuesday(currentNcaafWeek); // Find the next Thursday
+      for (int i = 0; i < 5; i++) {
+        // Iterate 4 days (Tuesday to Saturday)
+        days.add(currentNcaafWeek);
+        currentNcaafWeek = currentNcaafWeek.add(Duration(days: 1));
+      }
+
+      WeekModel week = WeekModel(
+          isSelected: false, // You can set this value as needed
+          days: days,
+          startDate: days.first,
+          endDate: days.last);
+
+      ncaafweekModels.add(week);
+
+      currentNcaafWeek =
+          currentNcaafWeek.add(Duration(days: 2)); // Skip Monday to Wednesday
+    }
+  }
+
+  DateTime findNextThursday(DateTime date) {
+    while (date.weekday != DateTime.thursday) {
+      date = date.add(Duration(days: 1));
+    }
+    return date;
+  }
+
+  DateTime findNextTuesday(DateTime date) {
+    while (date.weekday != DateTime.tuesday) {
+      date = date.add(Duration(days: 1));
+    }
+    return date;
+  }
+
   final SplashController splashController = Get.find<SplashController>();
 
   @override
   void initState() {
-    calender();
     currentGame();
+    nflstartDate = dateFormat.parse('2023-09-07');
+    nflEndDate = dateFormat.parse('2024-02-11');
+    ncaafStartDate = dateFormat.parse('2023-08-26');
+    ncaafEndDate = dateFormat.parse('2023-12-10');
+    currentNflWeek = nflstartDate;
+    currentNcaafWeek = ncaafStartDate;
+    ncaafCalender();
+    thisNcaafWeek = getCurrentWeek(ncaafweekModels, DateTime.now());
+    thisNcaafWeek.isSelected = true;
+    nflCalender();
+    thisNflWeek = getCurrentWeek(nflweekModels, DateTime.now());
+    thisNflWeek.isSelected = true;
+    calender();
 
-    if (_splashController.currentGame == "NCAAF") {
+    /* if (_splashController.currentGame == "NCAAF") {
       eventController.ncaafEventloading.value = false;
       eventController.getNcaafEvents(date: today);
     } else if (_splashController.currentGame == "NFL") {
@@ -93,7 +202,7 @@ class _PickOddsPageState extends State<PickOddsPage> {
     } else {
       eventController.nhlEventloading.value = false;
       eventController.getNhlEvents(date: today);
-    }
+    } */
     super.initState();
   }
 
@@ -141,7 +250,7 @@ class _PickOddsPageState extends State<PickOddsPage> {
                   ),
                   margin: const EdgeInsets.only(left: 5, right: 5),
                   child: InkWell(
-                    onTap: () {
+                    /*  onTap: () {
                       setState(() {
                         var selectedgameindex = games.indexWhere(
                             (element) => element.isselected == true);
@@ -211,6 +320,41 @@ class _PickOddsPageState extends State<PickOddsPage> {
                           eventController.getWnbaEvents(date: today);
                         }
                       });
+                    }, */
+                    onTap: () {
+                      setState(() {
+                        games.forEach((element) {
+                          element.isselected = false;
+                          games.elementAt(index).isselected = true;
+                          _splashController.currentGame.value =
+                              games.elementAt(index).name;
+                        });
+                        print("vaL::" + _splashController.currentGame.value);
+                        if (_splashController.currentGame.value != "NFL" ||
+                            _splashController.currentGame.value != "NCAAF") {
+                          var todaysIndex = currentMonth
+                              .indexWhere((element) => element.date == "Today");
+                          currentMonth.elementAt(todaysIndex).isselected = true;
+                        }
+                        if (_splashController.currentGame.value == "NCAAF") {
+                          currentNcaafWeek = ncaafStartDate;
+                          ncaafweekModels.forEach((element) {
+                            element.isSelected = false;
+                          });
+                          thisNcaafWeek =
+                              getCurrentWeek(ncaafweekModels, DateTime.now());
+                          thisNcaafWeek.isSelected = true;
+                        }
+                        if (_splashController.currentGame.value == "NFL") {
+                          currentNflWeek = nflstartDate;
+                          nflweekModels.forEach((element) {
+                            element.isSelected = false;
+                          });
+                          thisNflWeek =
+                              getCurrentWeek(nflweekModels, DateTime.now());
+                          thisNflWeek.isSelected = true;
+                        }
+                      });
                     },
                     child: Container(
                       alignment: Alignment.center,
@@ -231,78 +375,207 @@ class _PickOddsPageState extends State<PickOddsPage> {
               },
             ),
           ),
-          Container(
-            color: Colors.black,
-            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-            width: double.infinity,
-            height: 50,
-            child: ScrollablePositionedList.builder(
-              shrinkWrap: true,
-              scrollDirection: Axis.horizontal,
-              initialScrollIndex: currentMonth
-                      .indexWhere((element) => element.date == "Today") -
-                  3,
-              itemCount: currentMonth.length,
-              itemBuilder: (BuildContext context, int index) {
-                return InkWell(
-                  onTap: () {
-                    var a = currentMonth
-                        .indexWhere((element) => element.isselected == true);
-                    setState(() {
-                      currentMonth.elementAt(a).isselected = false;
-                      currentMonth.elementAt(index).isselected = true;
-                    });
-                    if (_splashController.currentGame == "NCAAF") {
-                      eventController.ncaafEventloading.value = false;
-                      eventController.getNcaafEvents(
-                          date: currentMonth[index].apiFormattedDate);
-                    } else if (_splashController.currentGame == "NFL") {
-                      eventController.nflEventloading.value = false;
-                      eventController.getNflEvents(
-                          date: currentMonth[index].apiFormattedDate);
-                    } else if (_splashController.currentGame == "MLB") {
-                      eventController.mlbEventloading.value = false;
-                      eventController.getMlbEvents(
-                          date: currentMonth[index].apiFormattedDate);
-                    } else if (_splashController.currentGame == "NBA") {
-                      eventController.nbaEventloading.value = false;
-                      eventController.getNbaEvents(
-                          date: currentMonth[index].apiFormattedDate);
-                    } else if (_splashController.currentGame == "NCAAB") {
-                      eventController.ncaabEventloading.value = false;
-                      eventController.getNcaabEvents(
-                          date: currentMonth[index].apiFormattedDate);
-                    } else if (_splashController.currentGame == "WNBA") {
-                      eventController.wnbaEventloading.value = false;
-                      eventController.getWnbaEvents(
-                          date: currentMonth[index].apiFormattedDate);
-                    } else {
-                      eventController.nhlEventloading.value = false;
-                      eventController.getNhlEvents(
-                          date: currentMonth[index].apiFormattedDate);
-                    }
-                  },
-                  child: Container(
-                    margin: const EdgeInsets.only(left: 5, right: 5),
-                    child: Container(
-                      alignment: Alignment.center,
-                      width: 50,
-                      child: Text(
-                        currentMonth.elementAt(index).date,
-                        maxLines: 1,
-                        style: TextStyle(
-                            fontSize: 11,
-                            color: currentMonth[index].isselected == true
-                                ? Colors.blue
-                                : Colors.white,
-                            fontWeight: FontWeight.w600),
-                      ),
-                    ),
+          _splashController.currentGame.value != "NCAAF" &&
+                  _splashController.currentGame.value != "NFL"
+              ? Container(
+                  color: Colors.black,
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                  width: double.infinity,
+                  height: 50,
+                  child: ScrollablePositionedList.builder(
+                    shrinkWrap: true,
+                    scrollDirection: Axis.horizontal,
+                    initialScrollIndex: currentMonth
+                            .indexWhere((element) => element.date == "Today") -
+                        3,
+                    itemCount: currentMonth.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      return InkWell(
+                        onTap: () {
+                          var a = currentMonth.indexWhere(
+                              (element) => element.isselected == true);
+                          setState(() {
+                            currentMonth.elementAt(a).isselected = false;
+                            currentMonth.elementAt(index).isselected = true;
+                          });
+                          if (_splashController.currentGame == "NCAAF") {
+                            eventController.ncaafEventloading.value = false;
+                            eventController.getNcaafEvents(
+                                date: currentMonth[index].apiFormattedDate);
+                          } else if (_splashController.currentGame == "NFL") {
+                            eventController.nflEventloading.value = false;
+                            eventController.getNflEvents(
+                                date: currentMonth[index].apiFormattedDate);
+                          } else if (_splashController.currentGame == "MLB") {
+                            eventController.mlbEventloading.value = false;
+                            eventController.getMlbEvents(
+                                date: currentMonth[index].apiFormattedDate);
+                          } else if (_splashController.currentGame == "NBA") {
+                            eventController.nbaEventloading.value = false;
+                            eventController.getNbaEvents(
+                                date: currentMonth[index].apiFormattedDate);
+                          } else if (_splashController.currentGame == "NCAAB") {
+                            eventController.ncaabEventloading.value = false;
+                            eventController.getNcaabEvents(
+                                date: currentMonth[index].apiFormattedDate);
+                          } else if (_splashController.currentGame == "WNBA") {
+                            eventController.wnbaEventloading.value = false;
+                            eventController.getWnbaEvents(
+                                date: currentMonth[index].apiFormattedDate);
+                          } else {
+                            eventController.nhlEventloading.value = false;
+                            eventController.getNhlEvents(
+                                date: currentMonth[index].apiFormattedDate);
+                          }
+                        },
+                        child: Container(
+                          margin: const EdgeInsets.only(left: 5, right: 5),
+                          child: Container(
+                            alignment: Alignment.center,
+                            width: 50,
+                            child: Text(
+                              currentMonth.elementAt(index).date,
+                              maxLines: 1,
+                              style: TextStyle(
+                                  fontSize: 11,
+                                  color: currentMonth[index].isselected == true
+                                      ? Colors.blue
+                                      : Colors.white,
+                                  fontWeight: FontWeight.w600),
+                            ),
+                          ),
+                        ),
+                      );
+                    },
                   ),
-                );
-              },
-            ),
-          ),
+                )
+              : const SizedBox.shrink(),
+          _splashController.currentGame.value == "NFL"
+              ? Container(
+                  color: Colors.black,
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                  width: double.infinity,
+                  height: 46,
+                  child: ScrollablePositionedList.builder(
+                    shrinkWrap: true,
+                    scrollDirection: Axis.horizontal,
+                    initialScrollIndex: nflweekModels
+                        .indexWhere((element) => element.isSelected == true),
+                    itemCount: nflweekModels.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      return InkWell(
+                        onTap: () {
+                          setState(() {
+                            nflweekModels.forEach((element) {
+                              element.isSelected = false;
+                            });
+                            nflweekModels.elementAt(index).isSelected = true;
+                          });
+                        },
+                        child: Container(
+                          margin: const EdgeInsets.only(left: 5, right: 5),
+                          child: Container(
+                            alignment: Alignment.center,
+                            width: 70,
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Text(
+                                  "Week ${index + 1}",
+                                  maxLines: 1,
+                                  style: TextStyle(
+                                      fontSize: 11,
+                                      color: nflweekModels[index].isSelected ==
+                                              true
+                                          ? Colors.blue
+                                          : Colors.white,
+                                      fontWeight: FontWeight.w600),
+                                ),
+                                Text(
+                                  "${returnDay(nflweekModels.elementAt(index).startDate)} - ${returnDay(nflweekModels.elementAt(index).endDate)}",
+                                  maxLines: 1,
+                                  style: TextStyle(
+                                      fontSize: 8,
+                                      color: nflweekModels[index].isSelected ==
+                                              true
+                                          ? Colors.blue
+                                          : Colors.white,
+                                      fontWeight: FontWeight.w600),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      );
+                    },
+                  ),
+                )
+              : const SizedBox.shrink(),
+          _splashController.currentGame.value == "NCAAF"
+              ? Container(
+                  color: Colors.black,
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                  width: double.infinity,
+                  height: 46,
+                  child: ScrollablePositionedList.builder(
+                    shrinkWrap: true,
+                    scrollDirection: Axis.horizontal,
+                    initialScrollIndex: ncaafweekModels
+                        .indexWhere((element) => element.isSelected == true),
+                    itemCount: ncaafweekModels.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      return InkWell(
+                        onTap: () {
+                          setState(() {
+                            ncaafweekModels.forEach((element) {
+                              element.isSelected = false;
+                            });
+                            ncaafweekModels.elementAt(index).isSelected = true;
+                          });
+                        },
+                        child: Column(
+                          children: [
+                            Container(
+                              margin: const EdgeInsets.only(left: 5, right: 5),
+                              child: Container(
+                                alignment: Alignment.center,
+                                width: 70,
+                                child: Text(
+                                  "Week ${index + 1}",
+                                  maxLines: 1,
+                                  style: TextStyle(
+                                      fontSize: 11,
+                                      color:
+                                          ncaafweekModels[index].isSelected ==
+                                                  true
+                                              ? Colors.blue
+                                              : Colors.white,
+                                      fontWeight: FontWeight.w600),
+                                ),
+                              ),
+                            ),
+                            Text(
+                              "${returnDay(ncaafweekModels.elementAt(index).startDate)} - ${returnDay(ncaafweekModels.elementAt(index).endDate)}",
+                              maxLines: 1,
+                              style: TextStyle(
+                                  fontSize: 8,
+                                  color:
+                                      ncaafweekModels[index].isSelected == true
+                                          ? Colors.blue
+                                          : Colors.white,
+                                  fontWeight: FontWeight.w600),
+                            ),
+                          ],
+                        ),
+                      );
+                    },
+                  ),
+                )
+              : const SizedBox.shrink(),
           PickTab()
         ],
       ),
