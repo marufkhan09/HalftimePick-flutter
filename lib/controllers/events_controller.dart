@@ -55,6 +55,7 @@ class EventController extends BaseApiController {
   Rx<WnbaGames> wnbaGame = WnbaGames().obs;
   RxList<WnbaGamesData> wnbagamedata = <WnbaGamesData>[].obs;
 
+
   //game id : 1 ncaaf
   Future<List<NcaafGamesData>> getNcaafEvents({required String date}) async {
     try {

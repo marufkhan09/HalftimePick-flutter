@@ -18,6 +18,7 @@ class ScoresPage extends StatefulWidget {
   State<ScoresPage> createState() => _ScoresPageState();
 }
 
+
 class _ScoresPageState extends State<ScoresPage>
     with SingleTickerProviderStateMixin {
   final globalKey = GlobalKey();
