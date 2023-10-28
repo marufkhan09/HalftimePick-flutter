@@ -37,8 +37,7 @@ class _PickOddsPageState extends State<PickOddsPage> {
   late DateTime ncaafStartDate;
   late DateTime ncaafEndDate;
   List<WeekModel> ncaafweekModels = [];
-  late WeekModel thisNcaafWeek;
-  late WeekModel thisNflWeek;
+
   late DateTime currentNflWeek;
   List<WeekModel> nflweekModels = [];
   late DateTime nflstartDate;
@@ -113,20 +112,6 @@ class _PickOddsPageState extends State<PickOddsPage> {
     print(nflweekModels);
   }
 
-  WeekModel getCurrentWeek(List<WeekModel> weekModels, DateTime currentDate) {
-    var a = weekModels.indexWhere((element) =>
-        currentDate.isBefore(element.endDate.add(Duration(days: 1))));
-    print(a);
-    weekModels.elementAt(a).isSelected = true;
-
-    return WeekModel(
-        isSelected: false, // Default value if no current week is found
-        days: [],
-        startDate: DateTime.now(),
-        endDate: DateTime.now() // Empty list of days
-        );
-  }
-
   ncaafCalender() {
     while (currentNcaafWeek.isBefore(ncaafEndDate)) {
       List<DateTime> days = [];
@@ -177,40 +162,55 @@ class _PickOddsPageState extends State<PickOddsPage> {
     currentNflWeek = nflstartDate;
     currentNcaafWeek = ncaafStartDate;
     ncaafCalender();
-    thisNcaafWeek = getCurrentWeek(ncaafweekModels, DateTime.now());
-    thisNcaafWeek.isSelected = true;
-    ncaafWeekStartDate = thisNcaafWeek.startDate;
-    ncaafWeekEndDate = thisNcaafWeek.endDate;
+    getCurrentNcaafWeek(ncaafweekModels, DateTime.now());
     nflCalender();
-    thisNflWeek = getCurrentWeek(nflweekModels, DateTime.now());
-    thisNflWeek.isSelected = true;
-    nflWeekStartDate = thisNflWeek.startDate;
-    nflWeekEndDate = thisNflWeek.endDate;
+    getCurrentNflWeek(nflweekModels, DateTime.now());
     calender();
 
-    /* if (_splashController.currentGame == "NCAAF") {
+    if (_splashController.currentGame.value == "NCAAF") {
       eventController.ncaafEventloading.value = false;
-      eventController.getNcaafEvents(date: today);
-    } else if (_splashController.currentGame == "NFL") {
+      eventController.getNcaafEvents(
+          startDate: ncaafWeekStartDate, endDate: ncaafWeekEndDate);
+    } else if (_splashController.currentGame.value == "NFL") {
       eventController.nflEventloading.value = false;
-      eventController.getNflEvents(date: today);
-    } else if (_splashController.currentGame == "MLB") {
+      eventController.getNflEvents(
+          startDate: nflWeekStartDate, endDate: nflWeekEndDate);
+    } else if (_splashController.currentGame.value == "MLB") {
       eventController.mlbEventloading.value = false;
       eventController.getMlbEvents(date: today);
-    } else if (_splashController.currentGame == "NBA") {
+    } else if (_splashController.currentGame.value == "NBA") {
       eventController.nbaEventloading.value = false;
       eventController.getNbaEvents(date: today);
-    } else if (_splashController.currentGame == "NCAAB") {
+    } else if (_splashController.currentGame.value == "NCAAB") {
       eventController.ncaabEventloading.value = false;
       eventController.getNcaabEvents(date: today);
-    } else if (_splashController.currentGame == "WNBA") {
+    } else if (_splashController.currentGame.value == "WNBA") {
       eventController.wnbaEventloading.value = false;
       eventController.getWnbaEvents(date: today);
     } else {
       eventController.nhlEventloading.value = false;
       eventController.getNhlEvents(date: today);
-    } */
+    }
     super.initState();
+  }
+
+  getCurrentNflWeek(List<WeekModel> weekModels, DateTime currentDate) {
+    var a = weekModels.indexWhere((element) =>
+        currentDate.isBefore(element.endDate.add(Duration(days: 1))));
+    print(a);
+
+    weekModels.elementAt(a).isSelected = true;
+    nflWeekStartDate = weekModels.elementAt(a).startDate;
+    nflWeekEndDate = weekModels.elementAt(a).endDate;
+  }
+
+  getCurrentNcaafWeek(List<WeekModel> weekModels, DateTime currentDate) {
+    var a = weekModels.indexWhere((element) =>
+        currentDate.isBefore(element.endDate.add(Duration(days: 1))));
+    print(a);
+    weekModels.elementAt(a).isSelected = true;
+    ncaafWeekStartDate = weekModels.elementAt(a).startDate;
+    ncaafWeekEndDate = weekModels.elementAt(a).endDate;
   }
 
   currentGame() {
@@ -276,24 +276,15 @@ class _PickOddsPageState extends State<PickOddsPage> {
                           ncaafweekModels.forEach((element) {
                             element.isSelected = false;
                           });
-                          thisNcaafWeek =
-                              getCurrentWeek(ncaafweekModels, DateTime.now());
-                          thisNcaafWeek.isSelected = true;
-                          ncaafWeekStartDate = thisNcaafWeek.startDate;
-                          ncaafWeekEndDate = thisNcaafWeek.endDate;
+                          getCurrentNcaafWeek(ncaafweekModels, DateTime.now());
                         }
                         if (_splashController.currentGame.value == "NFL") {
                           currentNflWeek = nflstartDate;
                           nflweekModels.forEach((element) {
                             element.isSelected = false;
                           });
-                          thisNflWeek =
-                              getCurrentWeek(nflweekModels, DateTime.now());
-                          thisNflWeek.isSelected = true;
-                          nflWeekStartDate = thisNflWeek.startDate;
-                          nflWeekEndDate = thisNflWeek.endDate;
+                          getCurrentNflWeek(nflweekModels, DateTime.now());
                         }
-
                         if (games.elementAt(index).name == "NFL") {
                           _splashController.currentBottom.value = 2;
                           _splashController.currentGame.value = "NFL";
