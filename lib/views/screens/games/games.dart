@@ -298,49 +298,49 @@ class _SpecificGamesPageState extends State<SpecificGamesPage> {
                               .indexWhere((element) => element.date == "Today");
                           currentMonth.elementAt(todaysIndex).isselected = true;
                           if (games.elementAt(index).name == "NFL") {
-                            _splashController.currentBottom.value = 2;
+                            _splashController.currentBottom.value = 0;
                             _splashController.currentGame.value = "NFL";
                             _splashController.update();
                             eventController.nflEventloading.value = false;
                             eventController.update();
                             eventController.getNflEvents(date: today);
                           } else if (games.elementAt(index).name == "NBA") {
-                            _splashController.currentBottom.value = 2;
+                            _splashController.currentBottom.value = 0;
                             _splashController.currentGame.value = "NBA";
                             _splashController.update();
                             eventController.nbaEventloading.value = false;
                             eventController.update();
                             eventController.getNbaEvents(date: today);
                           } else if (games.elementAt(index).name == "MLB") {
-                            _splashController.currentBottom.value = 2;
+                            _splashController.currentBottom.value = 0;
                             _splashController.currentGame.value = "MLB";
                             _splashController.update();
                             eventController.mlbEventloading.value = false;
                             eventController.update();
                             eventController.getMlbEvents(date: today);
                           } else if (games.elementAt(index).name == "NHL") {
-                            _splashController.currentBottom.value = 2;
+                            _splashController.currentBottom.value = 0;
                             _splashController.currentGame.value = "NHL";
                             _splashController.update();
                             eventController.nhlEventloading.value = false;
                             eventController.update();
                             eventController.getNhlEvents(date: today);
                           } else if (games.elementAt(index).name == "NCAAF") {
-                            _splashController.currentBottom.value = 2;
+                            _splashController.currentBottom.value = 0;
                             _splashController.currentGame.value = "NCAAF";
                             _splashController.update();
                             eventController.ncaafEventloading.value = false;
                             eventController.update();
                             eventController.getNcaafEvents(date: today);
                           } else if (games.elementAt(index).name == "NCAAB") {
-                            _splashController.currentBottom.value = 2;
+                            _splashController.currentBottom.value = 0;
                             _splashController.currentGame.value = "NCAAB";
                             _splashController.update();
                             eventController.ncaabEventloading.value = false;
                             eventController.update();
                             eventController.getNcaabEvents(date: today);
                           } else {
-                            _splashController.currentBottom.value = 2;
+                            _splashController.currentBottom.value = 0;
                             _splashController.currentGame.value = "WNBA";
                             _splashController.update();
                             eventController.wnbaEventloading.value = false;

@@ -27,7 +27,6 @@ class _HomePageState extends State<HomePage> {
 
   @override
   void initState() {
-    //  homeController.getAllGames();
     super.initState();
   }
 
