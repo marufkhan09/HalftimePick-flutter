@@ -46,6 +46,10 @@ class _SpecificGamesPageState extends State<SpecificGamesPage> {
   List<WeekModel> ncaafweekModels = [];
   late WeekModel thisNcaafWeek;
   late WeekModel thisNflWeek;
+  late DateTime nflWeekStartDate;
+  late DateTime nflWeekEndDate;
+  late DateTime ncaafWeekStartDate;
+  late DateTime ncaafWeekEndDate;
 
   List<GamesTab> games = [
     GamesTab("NFL", false),
@@ -197,33 +201,40 @@ class _SpecificGamesPageState extends State<SpecificGamesPage> {
     ncaafCalender();
     thisNcaafWeek = getCurrentWeek(ncaafweekModels, DateTime.now());
     thisNcaafWeek.isSelected = true;
+    ncaafWeekStartDate = thisNcaafWeek.startDate;
+    ncaafWeekEndDate = thisNcaafWeek.endDate;
     nflCalender();
     thisNflWeek = getCurrentWeek(nflweekModels, DateTime.now());
     thisNflWeek.isSelected = true;
+    nflWeekStartDate = thisNflWeek.startDate;
+    nflWeekEndDate = thisNflWeek.endDate;
+
     calender();
 
-    // if (_splashController.currentGame.value == "NCAAF") {
-    //   eventController.ncaafEventloading.value = false;
-    //   eventController.getNcaafEvents(date: today);
-    // } else if (_splashController.currentGame.value == "NFL") {
-    //   eventController.nflEventloading.value = false;
-    //   eventController.getNflEvents(date: today);
-    // } else if (_splashController.currentGame.value == "MLB") {
-    //   eventController.mlbEventloading.value = false;
-    //   eventController.getMlbEvents(date: today);
-    // } else if (_splashController.currentGame.value == "NBA") {
-    //   eventController.nbaEventloading.value = false;
-    //   eventController.getNbaEvents(date: today);
-    // } else if (_splashController.currentGame.value == "NCAAB") {
-    //   eventController.ncaabEventloading.value = false;
-    //   eventController.getNcaabEvents(date: today);
-    // } else if (_splashController.currentGame.value == "WNBA") {
-    //   eventController.wnbaEventloading.value = false;
-    //   eventController.getWnbaEvents(date: today);
-    // } else {
-    //   eventController.nhlEventloading.value = false;
-    //   eventController.getNhlEvents(date: today);
-    // }
+    if (_splashController.currentGame.value == "NCAAF") {
+      eventController.ncaafEventloading.value = false;
+      eventController.getNcaafEvents(
+          startDate: ncaafWeekStartDate, endDate: ncaafWeekEndDate);
+    } else if (_splashController.currentGame.value == "NFL") {
+      eventController.nflEventloading.value = false;
+      eventController.getNflEvents(
+          startDate: nflWeekStartDate, endDate: nflWeekEndDate);
+    } else if (_splashController.currentGame.value == "MLB") {
+      eventController.mlbEventloading.value = false;
+      eventController.getMlbEvents(date: today);
+    } else if (_splashController.currentGame.value == "NBA") {
+      eventController.nbaEventloading.value = false;
+      eventController.getNbaEvents(date: today);
+    } else if (_splashController.currentGame.value == "NCAAB") {
+      eventController.ncaabEventloading.value = false;
+      eventController.getNcaabEvents(date: today);
+    } else if (_splashController.currentGame.value == "WNBA") {
+      eventController.wnbaEventloading.value = false;
+      eventController.getWnbaEvents(date: today);
+    } else {
+      eventController.nhlEventloading.value = false;
+      eventController.getNhlEvents(date: today);
+    }
     super.initState();
   }
 
@@ -301,6 +312,8 @@ class _SpecificGamesPageState extends State<SpecificGamesPage> {
                             thisNcaafWeek =
                                 getCurrentWeek(ncaafweekModels, DateTime.now());
                             thisNcaafWeek.isSelected = true;
+                            ncaafWeekStartDate = thisNcaafWeek.startDate;
+                            ncaafWeekEndDate = thisNcaafWeek.endDate;
                           }
                           if (_splashController.currentGame.value == "NFL") {
                             currentNflWeek = nflstartDate;
@@ -310,85 +323,65 @@ class _SpecificGamesPageState extends State<SpecificGamesPage> {
                             thisNflWeek =
                                 getCurrentWeek(nflweekModels, DateTime.now());
                             thisNflWeek.isSelected = true;
+                            nflWeekStartDate = thisNflWeek.startDate;
+                            nflWeekEndDate = thisNflWeek.endDate;
                           }
-                        });
-                        /*   setState(() {
-                          games.forEach((element) {
-                            element.isselected = false;
-                          });
 
-                          games.elementAt(index).isselected = true;
-
-                          if (_splashController.currentGame.value != "NFL" ||
-                              _splashController.currentGame.value != "NCAAF") {
-                            var todaysIndex = currentMonth.indexWhere(
-                                (element) => element.date == "Today");
-                            currentMonth.elementAt(todaysIndex).isselected =
-                                true;
-                          }
-                           else if (_splashController.currentGame.value ==
-                              "NCAAF") {
-                            ncaafweekModels.forEach((element) {
-                              element.isSelected = false;
-                            });
-
-                            thisNcaafWeek =
-                                getCurrentWeek(ncaafweekModels, DateTime.now());
-                            print(thisNcaafWeek);
-                            thisNcaafWeek.isSelected = true;
-                            print(thisNcaafWeek.isSelected);
-                          }
                           if (games.elementAt(index).name == "NFL") {
                             _splashController.currentBottom.value = 0;
                             _splashController.currentGame.value = "NFL";
                             _splashController.update();
                             eventController.nflEventloading.value = false;
                             eventController.update();
-                            //  eventController.getNflEvents(date: today);
+                            eventController.getNflEvents(
+                                startDate: nflWeekStartDate,
+                                endDate: nflWeekEndDate);
                           } else if (games.elementAt(index).name == "NBA") {
                             _splashController.currentBottom.value = 0;
                             _splashController.currentGame.value = "NBA";
                             _splashController.update();
                             eventController.nbaEventloading.value = false;
                             eventController.update();
-                            //  eventController.getNbaEvents(date: today);
+                            eventController.getNbaEvents(date: today);
                           } else if (games.elementAt(index).name == "MLB") {
                             _splashController.currentBottom.value = 0;
                             _splashController.currentGame.value = "MLB";
                             _splashController.update();
                             eventController.mlbEventloading.value = false;
                             eventController.update();
-                            //  eventController.getMlbEvents(date: today);
+                            eventController.getMlbEvents(date: today);
                           } else if (games.elementAt(index).name == "NHL") {
                             _splashController.currentBottom.value = 0;
                             _splashController.currentGame.value = "NHL";
                             _splashController.update();
                             eventController.nhlEventloading.value = false;
                             eventController.update();
-                            //  eventController.getNhlEvents(date: today);
+                            eventController.getNhlEvents(date: today);
                           } else if (games.elementAt(index).name == "NCAAF") {
                             _splashController.currentBottom.value = 0;
                             _splashController.currentGame.value = "NCAAF";
                             _splashController.update();
                             eventController.ncaafEventloading.value = false;
                             eventController.update();
-                            //  eventController.getNcaafEvents(date: today);
+                            eventController.getNcaafEvents(
+                                startDate: ncaafWeekStartDate,
+                                endDate: ncaafWeekEndDate);
                           } else if (games.elementAt(index).name == "NCAAB") {
                             _splashController.currentBottom.value = 0;
                             _splashController.currentGame.value = "NCAAB";
                             _splashController.update();
                             eventController.ncaabEventloading.value = false;
                             eventController.update();
-                            //  eventController.getNcaabEvents(date: today);
+                            eventController.getNcaabEvents(date: today);
                           } else {
                             _splashController.currentBottom.value = 0;
                             _splashController.currentGame.value = "WNBA";
                             _splashController.update();
                             eventController.wnbaEventloading.value = false;
                             eventController.update();
-                            //  eventController.getWnbaEvents(date: today);
+                            eventController.getWnbaEvents(date: today);
                           }
-                        }); */
+                        });
                       },
                       child: Container(
                         alignment: Alignment.center,
@@ -436,13 +429,9 @@ class _SpecificGamesPageState extends State<SpecificGamesPage> {
                             if (_splashController.currentGame.value ==
                                 "NCAAF") {
                               eventController.ncaafEventloading.value = false;
-                              eventController.getNcaafEvents(
-                                  date: currentMonth[index].apiFormattedDate);
                             } else if (_splashController.currentGame.value ==
                                 "NFL") {
                               eventController.nflEventloading.value = false;
-                              eventController.getNflEvents(
-                                  date: currentMonth[index].apiFormattedDate);
                             } else if (_splashController.currentGame.value ==
                                 "MLB") {
                               eventController.mlbEventloading.value = false;
@@ -513,6 +502,11 @@ class _SpecificGamesPageState extends State<SpecificGamesPage> {
                                 element.isSelected = false;
                               });
                               nflweekModels.elementAt(index).isSelected = true;
+                              eventController.getNflEvents(
+                                  startDate:
+                                      nflweekModels.elementAt(index).startDate,
+                                  endDate:
+                                      nflweekModels.elementAt(index).endDate);
                             });
                           },
                           child: Container(
@@ -580,6 +574,13 @@ class _SpecificGamesPageState extends State<SpecificGamesPage> {
                               });
                               ncaafweekModels.elementAt(index).isSelected =
                                   true;
+
+                              eventController.getNcaafEvents(
+                                  startDate: ncaafweekModels
+                                      .elementAt(index)
+                                      .startDate,
+                                  endDate:
+                                      ncaafweekModels.elementAt(index).endDate);
                             });
                           },
                           child: Column(

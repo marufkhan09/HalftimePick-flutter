@@ -44,9 +44,11 @@ class _PickOddsPageState extends State<PickOddsPage> {
   late DateTime nflstartDate;
   late DateTime nflEndDate;
   final DateFormat dateFormat = DateFormat("yyyy-MM-dd");
+  late DateTime nflWeekStartDate;
+  late DateTime nflWeekEndDate;
+  late DateTime ncaafWeekStartDate;
+  late DateTime ncaafWeekEndDate;
 
-
-  
   String returnDay(DateTime date) {
     var outputFormat = DateFormat('dd MMM');
     var output = outputFormat.format(date.toLocal());
@@ -116,6 +118,7 @@ class _PickOddsPageState extends State<PickOddsPage> {
         currentDate.isBefore(element.endDate.add(Duration(days: 1))));
     print(a);
     weekModels.elementAt(a).isSelected = true;
+
     return WeekModel(
         isSelected: false, // Default value if no current week is found
         days: [],
@@ -176,9 +179,13 @@ class _PickOddsPageState extends State<PickOddsPage> {
     ncaafCalender();
     thisNcaafWeek = getCurrentWeek(ncaafweekModels, DateTime.now());
     thisNcaafWeek.isSelected = true;
+    ncaafWeekStartDate = thisNcaafWeek.startDate;
+    ncaafWeekEndDate = thisNcaafWeek.endDate;
     nflCalender();
     thisNflWeek = getCurrentWeek(nflweekModels, DateTime.now());
     thisNflWeek.isSelected = true;
+    nflWeekStartDate = thisNflWeek.startDate;
+    nflWeekEndDate = thisNflWeek.endDate;
     calender();
 
     /* if (_splashController.currentGame == "NCAAF") {
@@ -250,32 +257,52 @@ class _PickOddsPageState extends State<PickOddsPage> {
                   ),
                   margin: const EdgeInsets.only(left: 5, right: 5),
                   child: InkWell(
-                    /*  onTap: () {
+                    onTap: () {
                       setState(() {
-                        var selectedgameindex = games.indexWhere(
-                            (element) => element.isselected == true);
-                        print(selectedgameindex.toString());
-                        if (selectedgameindex != -1) {
-                          print("index ase");
-                          games[selectedgameindex].isselected = false;
+                        games.forEach((element) {
+                          element.isselected = false;
+                          games.elementAt(index).isselected = true;
+                          _splashController.currentGame.value =
+                              games.elementAt(index).name;
+                        });
+                        if (_splashController.currentGame.value != "NFL" ||
+                            _splashController.currentGame.value != "NCAAF") {
+                          var todaysIndex = currentMonth
+                              .indexWhere((element) => element.date == "Today");
+                          currentMonth.elementAt(todaysIndex).isselected = true;
+                        }
+                        if (_splashController.currentGame.value == "NCAAF") {
+                          currentNcaafWeek = ncaafStartDate;
+                          ncaafweekModels.forEach((element) {
+                            element.isSelected = false;
+                          });
+                          thisNcaafWeek =
+                              getCurrentWeek(ncaafweekModels, DateTime.now());
+                          thisNcaafWeek.isSelected = true;
+                          ncaafWeekStartDate = thisNcaafWeek.startDate;
+                          ncaafWeekEndDate = thisNcaafWeek.endDate;
+                        }
+                        if (_splashController.currentGame.value == "NFL") {
+                          currentNflWeek = nflstartDate;
+                          nflweekModels.forEach((element) {
+                            element.isSelected = false;
+                          });
+                          thisNflWeek =
+                              getCurrentWeek(nflweekModels, DateTime.now());
+                          thisNflWeek.isSelected = true;
+                          nflWeekStartDate = thisNflWeek.startDate;
+                          nflWeekEndDate = thisNflWeek.endDate;
                         }
 
-                        games.elementAt(index).isselected = true;
-
-                        var selectedDateIndex = currentMonth.indexWhere(
-                            (element) => element.isselected == true);
-                        currentMonth.elementAt(selectedDateIndex).isselected =
-                            false;
-                        var todaysIndex = currentMonth
-                            .indexWhere((element) => element.date == "Today");
-                        currentMonth.elementAt(todaysIndex).isselected = true;
                         if (games.elementAt(index).name == "NFL") {
                           _splashController.currentBottom.value = 2;
                           _splashController.currentGame.value = "NFL";
                           _splashController.update();
                           eventController.nflEventloading.value = false;
                           eventController.update();
-                          eventController.getNflEvents(date: today);
+                          eventController.getNflEvents(
+                              startDate: nflWeekStartDate,
+                              endDate: nflWeekEndDate);
                         } else if (games.elementAt(index).name == "NBA") {
                           _splashController.currentBottom.value = 2;
                           _splashController.currentGame.value = "NBA";
@@ -303,7 +330,9 @@ class _PickOddsPageState extends State<PickOddsPage> {
                           _splashController.update();
                           eventController.ncaafEventloading.value = false;
                           eventController.update();
-                          eventController.getNcaafEvents(date: today);
+                          eventController.getNcaafEvents(
+                              startDate: ncaafWeekStartDate,
+                              endDate: ncaafWeekEndDate);
                         } else if (games.elementAt(index).name == "NCAAB") {
                           _splashController.currentBottom.value = 2;
                           _splashController.currentGame.value = "NCAAB";
@@ -318,41 +347,6 @@ class _PickOddsPageState extends State<PickOddsPage> {
                           eventController.wnbaEventloading.value = false;
                           eventController.update();
                           eventController.getWnbaEvents(date: today);
-                        }
-                      });
-                    }, */
-                    onTap: () {
-                      setState(() {
-                        games.forEach((element) {
-                          element.isselected = false;
-                          games.elementAt(index).isselected = true;
-                          _splashController.currentGame.value =
-                              games.elementAt(index).name;
-                        });
-                        print("vaL::" + _splashController.currentGame.value);
-                        if (_splashController.currentGame.value != "NFL" ||
-                            _splashController.currentGame.value != "NCAAF") {
-                          var todaysIndex = currentMonth
-                              .indexWhere((element) => element.date == "Today");
-                          currentMonth.elementAt(todaysIndex).isselected = true;
-                        }
-                        if (_splashController.currentGame.value == "NCAAF") {
-                          currentNcaafWeek = ncaafStartDate;
-                          ncaafweekModels.forEach((element) {
-                            element.isSelected = false;
-                          });
-                          thisNcaafWeek =
-                              getCurrentWeek(ncaafweekModels, DateTime.now());
-                          thisNcaafWeek.isSelected = true;
-                        }
-                        if (_splashController.currentGame.value == "NFL") {
-                          currentNflWeek = nflstartDate;
-                          nflweekModels.forEach((element) {
-                            element.isSelected = false;
-                          });
-                          thisNflWeek =
-                              getCurrentWeek(nflweekModels, DateTime.now());
-                          thisNflWeek.isSelected = true;
                         }
                       });
                     },
@@ -401,12 +395,8 @@ class _PickOddsPageState extends State<PickOddsPage> {
                           });
                           if (_splashController.currentGame == "NCAAF") {
                             eventController.ncaafEventloading.value = false;
-                            eventController.getNcaafEvents(
-                                date: currentMonth[index].apiFormattedDate);
                           } else if (_splashController.currentGame == "NFL") {
                             eventController.nflEventloading.value = false;
-                            eventController.getNflEvents(
-                                date: currentMonth[index].apiFormattedDate);
                           } else if (_splashController.currentGame == "MLB") {
                             eventController.mlbEventloading.value = false;
                             eventController.getMlbEvents(
@@ -472,6 +462,11 @@ class _PickOddsPageState extends State<PickOddsPage> {
                               element.isSelected = false;
                             });
                             nflweekModels.elementAt(index).isSelected = true;
+                            eventController.getNflEvents(
+                                startDate:
+                                    nflweekModels.elementAt(index).startDate,
+                                endDate:
+                                    nflweekModels.elementAt(index).endDate);
                           });
                         },
                         child: Container(
@@ -535,6 +530,11 @@ class _PickOddsPageState extends State<PickOddsPage> {
                               element.isSelected = false;
                             });
                             ncaafweekModels.elementAt(index).isSelected = true;
+                            eventController.getNcaafEvents(
+                                startDate:
+                                    ncaafweekModels.elementAt(index).startDate,
+                                endDate:
+                                    ncaafweekModels.elementAt(index).endDate);
                           });
                         },
                         child: Column(

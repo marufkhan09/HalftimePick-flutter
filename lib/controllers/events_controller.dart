@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:halftimepick/controllers/base_api_controller.dart';
@@ -55,12 +56,22 @@ class EventController extends BaseApiController {
   Rx<WnbaGames> wnbaGame = WnbaGames().obs;
   RxList<WnbaGamesData> wnbagamedata = <WnbaGamesData>[].obs;
 
+  String parseApiFormattedDay(DateTime date) {
+    var outputFormat = DateFormat('yyyy-MM-dd');
+    var output = outputFormat.format(date.toLocal());
+
+    return output.toString();
+  }
 
   //game id : 1 ncaaf
-  Future<List<NcaafGamesData>> getNcaafEvents({required String date}) async {
-    try {
+  Future<List<NcaafGamesData>> getNcaafEvents(
+      {required DateTime startDate, required DateTime endDate}) async {
+    print("start:" + parseApiFormattedDay(startDate));
+    print("end::" + parseApiFormattedDay(endDate));
+    return <NcaafGamesData>[];
+    /*  try {
       var response = await getDio()!.get(
-        "1/events/$date",
+        "1/$startDate/$endDate",
       );
       //  https: //halftimepick.accountta.com/api/2/events/2020-09-20
       NcaafGames ncaaf = NcaafGames.fromJson(response.data);
@@ -84,7 +95,7 @@ class EventController extends BaseApiController {
           colorText: Colors.white,
           margin: const EdgeInsets.all(10));
       return <NcaafGamesData>[];
-    }
+    } */
   }
 
   //game id : 3 mlb
@@ -165,10 +176,15 @@ class EventController extends BaseApiController {
   }
 
   //game id :  nfl
-  Future<List<NflGameData>> getNflEvents({required String date}) async {
-    try {
+  Future<List<NflGameData>> getNflEvents(
+      {required DateTime startDate, required DateTime endDate}) async {
+    print("start:" + parseApiFormattedDay(startDate));
+    print("end::" + parseApiFormattedDay(endDate));
+
+    return <NflGameData>[];
+    /*  try {
       var response = await getDio()!.get(
-        "2/events/$date",
+        "2/$startDate/$endDate",
       );
       NflGame nfl = NflGame.fromJson(response.data);
       nflGame.value = nfl;
@@ -185,7 +201,7 @@ class EventController extends BaseApiController {
           colorText: Colors.white,
           margin: const EdgeInsets.all(10));
       return <NflGameData>[];
-    }
+    } */
   }
 
   //game id : 5 ncaab

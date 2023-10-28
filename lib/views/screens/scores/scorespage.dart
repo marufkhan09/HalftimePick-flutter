@@ -75,12 +75,8 @@ class _ScoresPageState extends State<ScoresPage>
 
   @override
   void initState() {
-    //_scrollController = ScrollController();
-    // _scrollController.addListener(scroll);
     tabController = TabController(length: 3, vsync: this);
     calender();
-    eventController.getNcaafEvents(date: today);
-    eventController.getNflEvents(date: today);
     eventController.getMlbEvents(date: today);
     eventController.getNbaEvents(date: today);
     eventController.getNcaabEvents(date: today);
@@ -197,11 +193,9 @@ class _ScoresPageState extends State<ScoresPage>
                       currentMonth.elementAt(index).isselected = true;
 
                       eventController.ncaafEventloading.value = false;
-                      eventController.getNcaafEvents(
-                          date: currentMonth[index].apiFormattedDate);
+                     
                       eventController.nflEventloading.value = false;
-                      eventController.getNflEvents(
-                          date: currentMonth[index].apiFormattedDate);
+                    
 
                       eventController.mlbEventloading.value = false;
                       eventController.getMlbEvents(
