@@ -66,12 +66,12 @@ class EventController extends BaseApiController {
   //game id : 1 ncaaf
   Future<List<NcaafGamesData>> getNcaafEvents(
       {required DateTime startDate, required DateTime endDate}) async {
-    print("start:" + parseApiFormattedDay(startDate));
-    print("end::" + parseApiFormattedDay(endDate));
-    return <NcaafGamesData>[];
-    /*  try {
+    var start = parseApiFormattedDay(startDate);
+    var end = parseApiFormattedDay(endDate);
+
+    try {
       var response = await getDio()!.get(
-        "1/$startDate/$endDate",
+        "1/$start/$end",
       );
       //  https: //halftimepick.accountta.com/api/2/events/2020-09-20
       NcaafGames ncaaf = NcaafGames.fromJson(response.data);
@@ -82,7 +82,9 @@ class EventController extends BaseApiController {
           ncaafgamedata.add(element);
         }
       });
-      //  ncaafgamedata.value = ncaafGame.value.data!;
+      ncaafgamedata.sort((a, b) =>
+          DateTime.parse(a.eventDate!).compareTo(DateTime.parse(b.eventDate!)));
+
       ncaafEventloading.value = true;
       update();
       print(response.toString());
@@ -95,7 +97,7 @@ class EventController extends BaseApiController {
           colorText: Colors.white,
           margin: const EdgeInsets.all(10));
       return <NcaafGamesData>[];
-    } */
+    }
   }
 
   //game id : 3 mlb
@@ -178,18 +180,19 @@ class EventController extends BaseApiController {
   //game id :  nfl
   Future<List<NflGameData>> getNflEvents(
       {required DateTime startDate, required DateTime endDate}) async {
-    print("start:" + parseApiFormattedDay(startDate));
-    print("end::" + parseApiFormattedDay(endDate));
+    var start = parseApiFormattedDay(startDate);
+    var end = parseApiFormattedDay(endDate);
 
-    return <NflGameData>[];
-    /*  try {
+    try {
       var response = await getDio()!.get(
-        "2/$startDate/$endDate",
+        "2/$start/$end",
       );
       NflGame nfl = NflGame.fromJson(response.data);
       nflGame.value = nfl;
       nflgamedata.clear();
       nflgamedata.value = nflGame.value.data!;
+      nflgamedata.sort((a, b) =>
+          DateTime.parse(a.eventDate!).compareTo(DateTime.parse(b.eventDate!)));
       nflEventloading.value = true;
       update();
       return nflgamedata;
@@ -201,7 +204,7 @@ class EventController extends BaseApiController {
           colorText: Colors.white,
           margin: const EdgeInsets.all(10));
       return <NflGameData>[];
-    } */
+    }
   }
 
   //game id : 5 ncaab

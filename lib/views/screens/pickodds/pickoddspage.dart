@@ -453,6 +453,8 @@ class _PickOddsPageState extends State<PickOddsPage> {
                               element.isSelected = false;
                             });
                             nflweekModels.elementAt(index).isSelected = true;
+                            eventController.nflEventloading.value = false;
+                            eventController.update();
                             eventController.getNflEvents(
                                 startDate:
                                     nflweekModels.elementAt(index).startDate,
@@ -521,6 +523,8 @@ class _PickOddsPageState extends State<PickOddsPage> {
                               element.isSelected = false;
                             });
                             ncaafweekModels.elementAt(index).isSelected = true;
+                            eventController.ncaafEventloading.value = false;
+                            eventController.update();
                             eventController.getNcaafEvents(
                                 startDate:
                                     ncaafweekModels.elementAt(index).startDate,
