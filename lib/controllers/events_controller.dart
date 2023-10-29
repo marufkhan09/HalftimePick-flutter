@@ -18,7 +18,6 @@ import 'package:halftimepick/models/nhl_games/datum.dart';
 import 'package:halftimepick/models/nhl_games/nhl_games.dart';
 import 'package:halftimepick/models/wnba_games/datum.dart';
 import 'package:halftimepick/models/wnba_games/wnba_games.dart';
-import 'package:intl/date_symbol_data_local.dart';
 
 class EventController extends BaseApiController {
   //Dio dio = Dio();

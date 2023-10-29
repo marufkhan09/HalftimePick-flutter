@@ -198,8 +198,13 @@ class _WnbaEventItemState extends State<WnbaEventItem> {
                                       margin: const EdgeInsets.only(bottom: 15),
                                       child: Text(
                                         widget.events.lines!.first.moneyline!
-                                            .moneylineAway!
-                                            .toString(),
+                                                    .moneylineAway!
+                                                    .toString() ==
+                                                "0.0001"
+                                            ? "N/A"
+                                            : widget.events.lines!.first
+                                                .moneyline!.moneylineAway!
+                                                .toString(),
                                         style: const TextStyle(
                                             fontSize: 10,
                                             fontWeight: FontWeight.w500,
@@ -217,10 +222,17 @@ class _WnbaEventItemState extends State<WnbaEventItem> {
                                                   .secondaryTextColor)),
                                       child: Text(
                                         widget.events.lines!
-                                            .elementAt(0)
-                                            .moneyline!
-                                            .moneylineHome
-                                            .toString(),
+                                                    .elementAt(0)
+                                                    .moneyline!
+                                                    .moneylineHome
+                                                    .toString() ==
+                                                "0.0001"
+                                            ? "N/A"
+                                            : widget.events.lines!
+                                                .elementAt(0)
+                                                .moneyline!
+                                                .moneylineHome
+                                                .toString(),
                                         style: const TextStyle(
                                             fontSize: 10,
                                             fontWeight: FontWeight.w500,
@@ -263,8 +275,13 @@ class _WnbaEventItemState extends State<WnbaEventItem> {
                                       children: [
                                         Text(
                                           widget.events.lines!.first.spread!
-                                              .pointSpreadAway
-                                              .toString(),
+                                                      .pointSpreadAway
+                                                      .toString() ==
+                                                  "0.0001"
+                                              ? "N/A"
+                                              : widget.events.lines!.first
+                                                  .spread!.pointSpreadAway
+                                                  .toString(),
                                           style: const TextStyle(
                                               fontSize: 10,
                                               fontWeight: FontWeight.w500,
@@ -272,8 +289,13 @@ class _WnbaEventItemState extends State<WnbaEventItem> {
                                         ),
                                         Text(
                                           widget.events.lines!.first.spread!
-                                              .pointSpreadAwayDelta
-                                              .toString(),
+                                                      .pointSpreadAwayDelta
+                                                      .toString() ==
+                                                  "0.0001"
+                                              ? "N/A"
+                                              : widget.events.lines!.first
+                                                  .spread!.pointSpreadAwayDelta
+                                                  .toString(),
                                           style: const TextStyle(
                                               fontSize: 8,
                                               fontWeight: FontWeight.w500,
@@ -298,8 +320,13 @@ class _WnbaEventItemState extends State<WnbaEventItem> {
                                       children: [
                                         Text(
                                           widget.events.lines!.first.spread!
-                                              .pointSpreadHome
-                                              .toString(),
+                                                      .pointSpreadHome
+                                                      .toString() ==
+                                                  "0.0001"
+                                              ? "N/A"
+                                              : widget.events.lines!.first
+                                                  .spread!.pointSpreadHome
+                                                  .toString(),
                                           style: const TextStyle(
                                               fontSize: 10,
                                               fontWeight: FontWeight.w500,
@@ -307,8 +334,13 @@ class _WnbaEventItemState extends State<WnbaEventItem> {
                                         ),
                                         Text(
                                           widget.events.lines!.first.spread!
-                                              .pointSpreadHomeDelta
-                                              .toString(),
+                                                      .pointSpreadHomeDelta
+                                                      .toString() ==
+                                                  "0.0001"
+                                              ? "N/A"
+                                              : widget.events.lines!.first
+                                                  .spread!.pointSpreadHomeDelta
+                                                  .toString(),
                                           style: const TextStyle(
                                               fontSize: 8,
                                               fontWeight: FontWeight.w500,
@@ -352,8 +384,13 @@ class _WnbaEventItemState extends State<WnbaEventItem> {
                                       children: [
                                         Text(
                                           widget.events.lines!.first.total!
-                                              .totalOver
-                                              .toString(),
+                                                      .totalOver
+                                                      .toString() ==
+                                                  "0.0001"
+                                              ? "N/A"
+                                              : widget.events.lines!.first
+                                                  .total!.totalOver
+                                                  .toString(),
                                           style: const TextStyle(
                                               fontSize: 10,
                                               fontWeight: FontWeight.w500,
@@ -361,8 +398,13 @@ class _WnbaEventItemState extends State<WnbaEventItem> {
                                         ),
                                         Text(
                                           widget.events.lines!.first.total!
-                                              .totalOverDelta
-                                              .toString(),
+                                                      .totalOverDelta
+                                                      .toString() ==
+                                                  "0.0001"
+                                              ? "N/A"
+                                              : widget.events.lines!.first
+                                                  .total!.totalOverDelta
+                                                  .toString(),
                                           style: const TextStyle(
                                               fontSize: 8,
                                               fontWeight: FontWeight.w500,
@@ -387,8 +429,13 @@ class _WnbaEventItemState extends State<WnbaEventItem> {
                                       children: [
                                         Text(
                                           widget.events.lines!.first.total!
-                                              .totalUnder
-                                              .toString(),
+                                                      .totalUnder
+                                                      .toString() ==
+                                                  "0.0001"
+                                              ? "N/A"
+                                              : widget.events.lines!.first
+                                                  .total!.totalUnder
+                                                  .toString(),
                                           style: const TextStyle(
                                               fontSize: 10,
                                               fontWeight: FontWeight.w500,
@@ -396,8 +443,13 @@ class _WnbaEventItemState extends State<WnbaEventItem> {
                                         ),
                                         Text(
                                           widget.events.lines!.first.total!
-                                              .totalOverDelta
-                                              .toString(),
+                                                      .totalOverDelta
+                                                      .toString() ==
+                                                  "0.0001"
+                                              ? "N/A"
+                                              : widget.events.lines!.first
+                                                  .total!.totalOverDelta
+                                                  .toString(),
                                           style: const TextStyle(
                                               fontSize: 8,
                                               fontWeight: FontWeight.w500,
