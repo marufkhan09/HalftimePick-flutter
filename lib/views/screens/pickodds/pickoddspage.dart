@@ -42,7 +42,7 @@ class _PickOddsPageState extends State<PickOddsPage> {
   List<WeekModel> nflweekModels = [];
   late DateTime nflstartDate;
   late DateTime nflEndDate;
-  final DateFormat dateFormat = DateFormat("yyyy-MM-dd");
+  late DateFormat dateFormat;
   late DateTime nflWeekStartDate;
   late DateTime nflWeekEndDate;
   late DateTime ncaafWeekStartDate;
@@ -56,7 +56,6 @@ class _PickOddsPageState extends State<PickOddsPage> {
   }
 
   List<CalenderModel> calender() {
-    initializeDateFormatting();
     DateTime now = DateTime.now();
     currentMonth.clear();
 
@@ -154,6 +153,8 @@ class _PickOddsPageState extends State<PickOddsPage> {
 
   @override
   void initState() {
+    initializeDateFormatting();
+    dateFormat = DateFormat("yyyy-MM-dd");
     currentGame();
     nflstartDate = dateFormat.parse('2023-09-07');
     nflEndDate = dateFormat.parse('2024-02-11');

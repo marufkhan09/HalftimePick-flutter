@@ -41,7 +41,7 @@ class _SpecificGamesPageState extends State<SpecificGamesPage> {
   late DateTime nflEndDate;
   late DateTime ncaafStartDate;
   late DateTime ncaafEndDate;
-  final DateFormat dateFormat = DateFormat("yyyy-MM-dd");
+  late DateFormat dateFormat;
   List<WeekModel> nflweekModels = [];
   List<WeekModel> ncaafweekModels = [];
   late DateTime nflWeekStartDate;
@@ -80,7 +80,7 @@ class _SpecificGamesPageState extends State<SpecificGamesPage> {
 
   List<CalenderModel> currentMonth = [];
   List<CalenderModel> calender() {
-    initializeDateFormatting();
+   
     DateTime now = DateTime.now();
     currentMonth.clear();
 
@@ -137,6 +137,7 @@ class _SpecificGamesPageState extends State<SpecificGamesPage> {
   }
 
   getCurrentNflWeek(List<WeekModel> weekModels, DateTime currentDate) {
+   
     var a = weekModels.indexWhere((element) =>
         currentDate.isBefore(element.endDate.add(Duration(days: 1))));
     print(a);
@@ -147,6 +148,7 @@ class _SpecificGamesPageState extends State<SpecificGamesPage> {
   }
 
   getCurrentNcaafWeek(List<WeekModel> weekModels, DateTime currentDate) {
+   
     var a = weekModels.indexWhere((element) =>
         currentDate.isBefore(element.endDate.add(Duration(days: 1))));
     print(a);
@@ -180,6 +182,7 @@ class _SpecificGamesPageState extends State<SpecificGamesPage> {
   }
 
   DateTime findNextThursday(DateTime date) {
+    
     while (date.weekday != DateTime.thursday) {
       date = date.add(Duration(days: 1));
     }
@@ -187,6 +190,7 @@ class _SpecificGamesPageState extends State<SpecificGamesPage> {
   }
 
   DateTime findNextTuesday(DateTime date) {
+
     while (date.weekday != DateTime.tuesday) {
       date = date.add(Duration(days: 1));
     }
@@ -195,6 +199,8 @@ class _SpecificGamesPageState extends State<SpecificGamesPage> {
 
   @override
   void initState() {
+    initializeDateFormatting();
+    dateFormat = DateFormat("yyyy-MM-dd");
     currentGame();
     nflstartDate = dateFormat.parse('2023-09-07');
     nflEndDate = dateFormat.parse('2024-02-11');
