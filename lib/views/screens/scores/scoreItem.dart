@@ -147,7 +147,12 @@ class _ScoreItemState extends State<ScoreItem> {
                                       .pointSpreadHome)
                                   ? Text(
                                       widget.item.lines!.first.total!.totalOver
-                                          .toString(),
+                                                  .toString() ==
+                                              "0.0001"
+                                          ? "N/A"
+                                          : widget.item.lines!.first.total!
+                                              .totalOver
+                                              .toString(),
                                       textAlign: TextAlign.center,
                                       style: const TextStyle(
                                           fontSize: 12,
@@ -156,8 +161,13 @@ class _ScoreItemState extends State<ScoreItem> {
                                     )
                                   : Text(
                                       widget.item.lines!.first.spread!
-                                          .pointSpreadAway
-                                          .toString(),
+                                                  .pointSpreadAway
+                                                  .toString() ==
+                                              "0.0001"
+                                          ? "N/A"
+                                          : widget.item.lines!.first.spread!
+                                              .pointSpreadAway
+                                              .toString(),
                                       textAlign: TextAlign.center,
                                       style: const TextStyle(
                                           fontSize: 12,
@@ -185,8 +195,13 @@ class _ScoreItemState extends State<ScoreItem> {
                                       .pointSpreadHome)
                                   ? Text(
                                       widget.item.lines!.first.spread!
-                                          .pointSpreadHome
-                                          .toString(),
+                                                  .pointSpreadHome
+                                                  .toString() ==
+                                              "0.0001"
+                                          ? "N/A"
+                                          : widget.item.lines!.first.spread!
+                                              .pointSpreadHome
+                                              .toString(),
                                       textAlign: TextAlign.center,
                                       style: const TextStyle(
                                           fontSize: 12,
@@ -195,7 +210,12 @@ class _ScoreItemState extends State<ScoreItem> {
                                     )
                                   : Text(
                                       widget.item.lines!.first.total!.totalOver
-                                          .toString(),
+                                                  .toString() ==
+                                              "0.0001"
+                                          ? "N/A"
+                                          : widget.item.lines!.first.total!
+                                              .totalOver
+                                              .toString(),
                                       textAlign: TextAlign.center,
                                       style: const TextStyle(
                                           fontSize: 12,
