@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:halftimepick/models/news_nba/news_nba.dart';
@@ -34,7 +35,9 @@ class NewsController extends GetxController {
       nbanewsobj.value = news;
       nbanewslist.clear();
       nbanewslist.addAll(nbanewsobj.value.news!);
-      print(nbanewslist.length.toString());
+      if (kDebugMode) {
+        print("NBA LEN:::${nbanewslist.length}");
+      }
       nbanewsAvailable.value = true;
       update();
       return nbanewslist;
@@ -46,21 +49,6 @@ class NewsController extends GetxController {
           margin: const EdgeInsets.all(10));
     }
   }
-
-/*   Future<List<News>> nbaNewsReadJson() async {
-    final String response =
-        await rootBundle.loadString('assets/jsonfiles/allScore-news-nba.json');
-    final Map<String, dynamic> data = await json.decode(response);
-
-    NewsNba news = NewsNba.fromJson(data);
-    nbanewsobj.value = news;
-    nbanewslist.clear();
-    nbanewslist.addAll(nbanewsobj.value.news!);
-    print(nbanewslist.length.toString());
-    nbanewsAvailable.value = true;
-    update();
-    return nbanewslist;
-  } */
 
   Future getNHLNews() async {
     try {
@@ -76,7 +64,9 @@ class NewsController extends GetxController {
       nhlnewsobj.value = news;
       nhlnewslist.clear();
       nhlnewslist.addAll(nhlnewsobj.value.news!);
-      print(nhlnewslist.length.toString());
+      if (kDebugMode) {
+        print("NHL LEN::::${nhlnewslist.length}");
+      }
       nhlnewsAvailable.value = true;
       update();
       return nhlnewslist;
