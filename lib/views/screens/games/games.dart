@@ -80,7 +80,6 @@ class _SpecificGamesPageState extends State<SpecificGamesPage> {
 
   List<CalenderModel> currentMonth = [];
   List<CalenderModel> calender() {
-   
     DateTime now = DateTime.now();
     currentMonth.clear();
 
@@ -137,7 +136,6 @@ class _SpecificGamesPageState extends State<SpecificGamesPage> {
   }
 
   getCurrentNflWeek(List<WeekModel> weekModels, DateTime currentDate) {
-   
     var a = weekModels.indexWhere((element) =>
         currentDate.isBefore(element.endDate.add(Duration(days: 1))));
     print(a);
@@ -148,7 +146,6 @@ class _SpecificGamesPageState extends State<SpecificGamesPage> {
   }
 
   getCurrentNcaafWeek(List<WeekModel> weekModels, DateTime currentDate) {
-   
     var a = weekModels.indexWhere((element) =>
         currentDate.isBefore(element.endDate.add(Duration(days: 1))));
     print(a);
@@ -182,7 +179,6 @@ class _SpecificGamesPageState extends State<SpecificGamesPage> {
   }
 
   DateTime findNextThursday(DateTime date) {
-    
     while (date.weekday != DateTime.thursday) {
       date = date.add(Duration(days: 1));
     }
@@ -190,7 +186,6 @@ class _SpecificGamesPageState extends State<SpecificGamesPage> {
   }
 
   DateTime findNextTuesday(DateTime date) {
-
     while (date.weekday != DateTime.tuesday) {
       date = date.add(Duration(days: 1));
     }
@@ -480,10 +475,9 @@ class _SpecificGamesPageState extends State<SpecificGamesPage> {
             _splashController.currentGame.value == "NFL"
                 ? Container(
                     color: Colors.black,
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 10, vertical: 10),
+                    padding: const EdgeInsets.symmetric(horizontal: 10),
                     width: double.infinity,
-                    height: 46,
+                    height: 54,
                     child: ScrollablePositionedList.builder(
                       shrinkWrap: true,
                       scrollDirection: Axis.horizontal,
@@ -511,11 +505,11 @@ class _SpecificGamesPageState extends State<SpecificGamesPage> {
                             margin: const EdgeInsets.only(left: 5, right: 5),
                             child: Container(
                               alignment: Alignment.center,
-                              width: 70,
+                              width: 76,
                               child: Column(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
                                 crossAxisAlignment: CrossAxisAlignment.center,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
                                 children: [
                                   Text(
                                     "Week ${index + 1}",
@@ -552,11 +546,11 @@ class _SpecificGamesPageState extends State<SpecificGamesPage> {
                 : const SizedBox.shrink(),
             _splashController.currentGame.value == "NCAAF"
                 ? Container(
+                    alignment: Alignment.center,
                     color: Colors.black,
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 10, vertical: 10),
+                    padding: const EdgeInsets.symmetric(horizontal: 10),
                     width: double.infinity,
-                    height: 46,
+                    height: 54,
                     child: ScrollablePositionedList.builder(
                       shrinkWrap: true,
                       scrollDirection: Axis.horizontal,
@@ -583,13 +577,15 @@ class _SpecificGamesPageState extends State<SpecificGamesPage> {
                             });
                           },
                           child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
                               Container(
                                 margin:
                                     const EdgeInsets.only(left: 5, right: 5),
                                 child: Container(
                                   alignment: Alignment.center,
-                                  width: 70,
+                                  width: 76,
                                   child: Text(
                                     "Week ${index + 1}",
                                     maxLines: 1,

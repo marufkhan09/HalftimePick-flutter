@@ -130,15 +130,59 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
   }
 
   @override
+  // Widget build(BuildContext context) {
+  //   Brightness brightness = MediaQuery.of(context).platformBrightness;
+  //   print(brightness.toString());
+  //   return GetMaterialApp(
+  //     debugShowCheckedModeBanner: false,
+  //     theme: _buildTheme(brightness),
+  //     themeMode: ThemeMode.system,
+  //     home: const Splash(),
+  //     navigatorKey: navigatorKey,
+  //     getPages: [
+  //       GetPage(
+  //         name: homePage,
+  //         page: () => const HomePage(),
+  //       ),
+  //       GetPage(
+  //         name: newsPage,
+  //         page: () => const NewsPage(),
+  //       ),
+  //       GetPage(
+  //         name: scoresPage,
+  //         page: () => const ScoresPage(),
+  //       ),
+  //       GetPage(
+  //         name: pickOddsPage,
+  //         page: () => const PickOddsPage(),
+  //       ),
+  //       GetPage(
+  //         name: landingpage,
+  //         page: () => const LandingPage(),
+  //       ),
+  //       GetPage(name: newsdetailwebview, page: () => const NewsDetailWebView()),
+  //       GetPage(name: gamespage, page: () => const SpecificGamesPage()),
+  //     ],
+  //   );
+  // }
+
   Widget build(BuildContext context) {
     Brightness brightness = MediaQuery.of(context).platformBrightness;
     print(brightness.toString());
     return GetMaterialApp(
-      debugShowCheckedModeBanner: false,
-      theme: _buildTheme(brightness),
       themeMode: ThemeMode.system,
-      home: const Splash(),
+      theme: _buildTheme(brightness),
       navigatorKey: navigatorKey,
+      builder: (BuildContext context, Widget? child) {
+        final MediaQueryData data = MediaQuery.of(context);
+        return MediaQuery(
+          data: data.copyWith(
+            textScaleFactor: 1,
+          ),
+          child: child!,
+        );
+      },
+      home: const Splash(),
       getPages: [
         GetPage(
           name: homePage,
@@ -161,8 +205,9 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
           page: () => const LandingPage(),
         ),
         GetPage(name: newsdetailwebview, page: () => const NewsDetailWebView()),
-          GetPage(name: gamespage, page: () => const SpecificGamesPage()),
+        GetPage(name: gamespage, page: () => const SpecificGamesPage()),
       ],
+      debugShowCheckedModeBanner: false,
     );
   }
 }

@@ -436,10 +436,9 @@ class _PickOddsPageState extends State<PickOddsPage> {
           _splashController.currentGame.value == "NFL"
               ? Container(
                   color: Colors.black,
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                  padding: const EdgeInsets.symmetric(horizontal: 10),
                   width: double.infinity,
-                  height: 46,
+                  height: 54,
                   child: ScrollablePositionedList.builder(
                     shrinkWrap: true,
                     scrollDirection: Axis.horizontal,
@@ -467,10 +466,10 @@ class _PickOddsPageState extends State<PickOddsPage> {
                           margin: const EdgeInsets.only(left: 5, right: 5),
                           child: Container(
                             alignment: Alignment.center,
-                            width: 70,
+                            width: 76,
                             child: Column(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               crossAxisAlignment: CrossAxisAlignment.center,
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
                                 Text(
                                   "Week ${index + 1}",
@@ -506,10 +505,9 @@ class _PickOddsPageState extends State<PickOddsPage> {
           _splashController.currentGame.value == "NCAAF"
               ? Container(
                   color: Colors.black,
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                  padding: const EdgeInsets.symmetric(horizontal: 10),
                   width: double.infinity,
-                  height: 46,
+                  height: 54,
                   child: ScrollablePositionedList.builder(
                     shrinkWrap: true,
                     scrollDirection: Axis.horizontal,
@@ -534,12 +532,14 @@ class _PickOddsPageState extends State<PickOddsPage> {
                           });
                         },
                         child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
                             Container(
                               margin: const EdgeInsets.only(left: 5, right: 5),
                               child: Container(
                                 alignment: Alignment.center,
-                                width: 70,
+                                width: 76,
                                 child: Text(
                                   "Week ${index + 1}",
                                   maxLines: 1,

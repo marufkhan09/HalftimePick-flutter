@@ -297,27 +297,34 @@ class _ScoreItemState extends State<ScoreItem> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
-                    Text(
-                      widget.item.score!.eventStatusDetail!,
-                      textAlign: TextAlign.end,
-                      maxLines: 2,
-                      overflow: TextOverflow.ellipsis,
-                      style: const TextStyle(
-                          fontSize: 12,
-                          fontWeight: FontWeight.w500,
-                          color: Colors.white),
+                    SizedBox(
+                      width: MediaQuery.of(context).size.width * 0.19,
+                      child: Text(
+                        widget.item.score!.eventStatusDetail!,
+                        textAlign: TextAlign.end,
+                        maxLines: 3,
+                        overflow: TextOverflow.ellipsis,
+                        style: const TextStyle(
+                            fontSize: 12,
+                            fontWeight: FontWeight.w500,
+                            color: Colors.white),
+                      ),
                     ),
                     const SizedBox(
                       height: 5,
                     ),
-                    Text(
-                      widget.item.score!.broadcast!,
-                      maxLines: 2,
-                      overflow: TextOverflow.ellipsis,
-                      style: const TextStyle(
-                          fontSize: 12,
-                          fontWeight: FontWeight.w500,
-                          color: Colors.white),
+                    SizedBox(
+                      width: MediaQuery.of(context).size.width * 0.19,
+                      child: Text(
+                        widget.item.score!.broadcast!,
+                        textAlign: TextAlign.end,
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                        style: const TextStyle(
+                            fontSize: 12,
+                            fontWeight: FontWeight.w500,
+                            color: Colors.white),
+                      ),
                     )
                   ],
                 ),
