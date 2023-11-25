@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:halftimepick/utils/colors.dart';
+import 'package:halftimepick/utils/timeZone_format.dart';
 
 class ScoreItem extends StatefulWidget {
   final dynamic item;
@@ -300,7 +301,8 @@ class _ScoreItemState extends State<ScoreItem> {
                     SizedBox(
                       width: MediaQuery.of(context).size.width * 0.19,
                       child: Text(
-                        widget.item.score!.eventStatusDetail!,
+                        convertToPacificTime(
+                            widget.item.score!.eventStatusDetail!),
                         textAlign: TextAlign.end,
                         maxLines: 3,
                         overflow: TextOverflow.ellipsis,

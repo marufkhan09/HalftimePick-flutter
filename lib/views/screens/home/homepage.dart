@@ -4,6 +4,7 @@ import 'package:halftimepick/controllers/home_controller.dart';
 import 'package:halftimepick/controllers/splash_controller.dart';
 import 'package:halftimepick/utils/colors.dart';
 import 'package:halftimepick/utils/routes.dart';
+import 'package:halftimepick/utils/timeZone_format.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -27,6 +28,13 @@ class _HomePageState extends State<HomePage> {
 
   @override
   void initState() {
+    String time1 = "11/25 - 7:00 PM EST";
+    String time2 = "Invalid Time Format";
+
+    String convertedTime1 = convertToPacificTime(time1);
+    String convertedTime2 = convertToPacificTime(time2);
+    print(convertedTime1);
+    print(convertedTime2);
     super.initState();
   }
 
