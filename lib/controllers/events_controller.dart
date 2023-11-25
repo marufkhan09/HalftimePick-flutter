@@ -104,8 +104,11 @@ class EventController extends BaseApiController {
   Future<List<MlbGameData>> getMlbEvents({required String date}) async {
     try {
       //https://halftimepick.laravel-script.com/api/3/events/2023-07-23
+      // var response = await getDio()!.get(
+      //   "3/events/$date",
+      // );
       var response = await getDio()!.get(
-        "3/events/$date",
+        "3/$date/$date",
       );
       MlbGame mlb = MlbGame.fromJson(response.data);
       mlbGame.value = mlb;
@@ -129,8 +132,11 @@ class EventController extends BaseApiController {
   Future<List<NbaGamesData>> getNbaEvents({required String date}) async {
     try {
       //https://halftimepick.laravel-script.com/api/3/events/2023-07-23
+      // var response = await getDio()!.get(
+      //   "4/events/$date",
+      // );
       var response = await getDio()!.get(
-        "4/events/$date",
+        "4/$date/$date",
       );
       NbaGames nba = NbaGames.fromJson(response.data);
       nbaGame.value = nba;
@@ -155,8 +161,11 @@ class EventController extends BaseApiController {
   Future<List<NhlGamesData>> getNhlEvents({required String date}) async {
     try {
       //https://halftimepick.laravel-script.com/api/3/events/2023-07-23
+      // var response = await getDio()!.get(
+      //   "6/events/$date",
+      // );
       var response = await getDio()!.get(
-        "6/events/$date",
+        "6/$date/$date",
       );
       //https://halftimepick.accountta.com/api/2/events/2020-09-20
       NhlGames nhl = NhlGames.fromJson(response.data);
@@ -211,8 +220,11 @@ class EventController extends BaseApiController {
   Future<List<NcaabGamesData>> getNcaabEvents({required String date}) async {
     try {
       //https://halftimepick.laravel-script.com/api/3/events/2023-07-23
+      // var response = await getDio()!.get(
+      //   "5/events/$date",
+      // );
       var response = await getDio()!.get(
-        "5/events/$date",
+        "5/$date/$date",
       );
       NcaabGames ncaab = NcaabGames.fromJson(response.data);
       ncaabGame.value = ncaab;
@@ -232,11 +244,14 @@ class EventController extends BaseApiController {
     }
   }
 
-  //game id : 5 ncaab
+  //game id : 8 wnba
   Future<List<WnbaGamesData>> getWnbaEvents({required String date}) async {
     try {
+      // var response = await getDio()!.get(
+      //   "8/events/$date",
+      // );
       var response = await getDio()!.get(
-        "8/events/$date",
+        "8/$date/$date",
       );
       WnbaGames wnba = WnbaGames.fromJson(response.data);
       wnbaGame.value = wnba;
