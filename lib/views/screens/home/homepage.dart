@@ -26,17 +26,6 @@ class _HomePageState extends State<HomePage> {
     "2.png", //wnba
   ];
 
-  @override
-  void initState() {
-    String time1 = "11/25 - 7:00 PM EST";
-    String time2 = "Invalid Time Format";
-
-    String convertedTime1 = convertToPacificTime(time1);
-    String convertedTime2 = convertToPacificTime(time2);
-    print(convertedTime1);
-    print(convertedTime2);
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {

@@ -177,7 +177,7 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
         final MediaQueryData data = MediaQuery.of(context);
         return MediaQuery(
           data: data.copyWith(
-            textScaleFactor: 1,
+            textScaler: const TextScaler.linear(1),
           ),
           child: child!,
         );

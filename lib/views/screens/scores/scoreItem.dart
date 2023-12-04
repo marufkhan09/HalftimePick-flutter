@@ -301,7 +301,7 @@ class _ScoreItemState extends State<ScoreItem> {
                     SizedBox(
                       width: MediaQuery.of(context).size.width * 0.19,
                       child: Text(
-                        convertToPacificTime(
+                        convertTo12HourFormat(
                             widget.item.score!.eventStatusDetail!),
                         textAlign: TextAlign.end,
                         maxLines: 3,
