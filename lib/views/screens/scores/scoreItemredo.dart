@@ -1,16 +1,16 @@
-/* import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 import 'package:halftimepick/utils/colors.dart';
 import 'package:halftimepick/utils/timeZone_format.dart';
 
-class ScoreItem extends StatefulWidget {
+class ScoreItemRedo extends StatefulWidget {
   final dynamic item;
-  const ScoreItem({super.key, required this.item});
+  const ScoreItemRedo({super.key, required this.item});
 
   @override
-  State<ScoreItem> createState() => _ScoreItemState();
+  State<ScoreItemRedo> createState() => _ScoreItemRedoState();
 }
 
-class _ScoreItemState extends State<ScoreItem> {
+class _ScoreItemRedoState extends State<ScoreItemRedo> {
   bool hasMinusSign(double pointspreadhome) {
     if (pointspreadhome < 0) {
       print("home ");
@@ -36,10 +36,6 @@ class _ScoreItemState extends State<ScoreItem> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const SizedBox(
-                    height: 20,
-                    width: 12,
-                  ),
                   Container(
                     margin: const EdgeInsets.only(bottom: 5),
                     child: Row(
@@ -70,7 +66,7 @@ class _ScoreItemState extends State<ScoreItem> {
                             maxLines: 1,
                             style: const TextStyle(
                                 color: Colors.white,
-                                fontSize: 12,
+                                fontSize: 14,
                                 fontWeight: FontWeight.w500),
                           ),
                         ),
@@ -107,7 +103,7 @@ class _ScoreItemState extends State<ScoreItem> {
                             maxLines: 1,
                             style: const TextStyle(
                                 color: Colors.white,
-                                fontSize: 12,
+                                fontSize: 14,
                                 fontWeight: FontWeight.w500),
                           ),
                         ),
@@ -123,15 +119,6 @@ class _ScoreItemState extends State<ScoreItem> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Container(
-                      alignment: Alignment.topCenter,
-                      height: 20,
-                      width: 40,
-                      child: const Text(
-                        "Odds",
-                        style: TextStyle(color: Colors.white, fontSize: 12),
-                      )),
-
                   Container(
                     margin: const EdgeInsets.only(bottom: 5),
                     child: Row(
@@ -156,7 +143,7 @@ class _ScoreItemState extends State<ScoreItem> {
                                               .toString(),
                                       textAlign: TextAlign.center,
                                       style: const TextStyle(
-                                          fontSize: 12,
+                                          fontSize: 14,
                                           fontWeight: FontWeight.w500,
                                           color: Colors.white),
                                     )
@@ -171,7 +158,7 @@ class _ScoreItemState extends State<ScoreItem> {
                                               .toString(),
                                       textAlign: TextAlign.center,
                                       style: const TextStyle(
-                                          fontSize: 12,
+                                          fontSize: 14,
                                           fontWeight: FontWeight.w500,
                                           color: Colors.white),
                                     )
@@ -180,8 +167,8 @@ class _ScoreItemState extends State<ScoreItem> {
                       ],
                     ),
                   ),
-//if - 14.5 at Home than Total will be beside Away
-// if -5.5 is at Away than Total will be beside home, like this example
+                  //if - 14.5 at Home than Total will be beside Away
+                  // if -5.5 is at Away than Total will be beside home, like this example
                   Container(
                     margin: const EdgeInsets.only(top: 5),
                     child: Row(
@@ -205,7 +192,7 @@ class _ScoreItemState extends State<ScoreItem> {
                                               .toString(),
                                       textAlign: TextAlign.center,
                                       style: const TextStyle(
-                                          fontSize: 12,
+                                          fontSize: 14,
                                           fontWeight: FontWeight.w500,
                                           color: Colors.white),
                                     )
@@ -219,7 +206,7 @@ class _ScoreItemState extends State<ScoreItem> {
                                               .toString(),
                                       textAlign: TextAlign.center,
                                       style: const TextStyle(
-                                          fontSize: 12,
+                                          fontSize: 14,
                                           fontWeight: FontWeight.w500,
                                           color: Colors.white),
                                     )
@@ -238,14 +225,6 @@ class _ScoreItemState extends State<ScoreItem> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Container(
-                      alignment: Alignment.topCenter,
-                      height: 20,
-                      width: 40,
-                      child: const Text(
-                        "Scores",
-                        style: TextStyle(color: Colors.white, fontSize: 12),
-                      )),
-                  Container(
                     margin: const EdgeInsets.only(bottom: 5),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.start,
@@ -260,7 +239,7 @@ class _ScoreItemState extends State<ScoreItem> {
                             widget.item.score!.scoreAway!.toString(),
                             textAlign: TextAlign.center,
                             style: const TextStyle(
-                                fontSize: 12,
+                                fontSize: 14,
                                 fontWeight: FontWeight.w500,
                                 color: Colors.white),
                           ),
@@ -280,7 +259,7 @@ class _ScoreItemState extends State<ScoreItem> {
                             widget.item.score!.scoreHome!.toString(),
                             textAlign: TextAlign.center,
                             style: const TextStyle(
-                                fontSize: 12,
+                                fontSize: 14,
                                 fontWeight: FontWeight.w500,
                                 color: Colors.white),
                           ),
@@ -307,7 +286,7 @@ class _ScoreItemState extends State<ScoreItem> {
                         maxLines: 3,
                         overflow: TextOverflow.ellipsis,
                         style: const TextStyle(
-                            fontSize: 12,
+                            fontSize: 14,
                             fontWeight: FontWeight.w500,
                             color: Colors.white),
                       ),
@@ -323,7 +302,7 @@ class _ScoreItemState extends State<ScoreItem> {
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,
                         style: const TextStyle(
-                            fontSize: 12,
+                            fontSize: 14,
                             fontWeight: FontWeight.w500,
                             color: Colors.white),
                       ),
@@ -338,7 +317,7 @@ class _ScoreItemState extends State<ScoreItem> {
             ? Container(
                 alignment: Alignment.topLeft,
                 width: double.infinity,
-                padding: const EdgeInsets.all(12),
+                padding: const EdgeInsets.all(8),
                 color: ProjectColors.primaryColor,
                 child: Text(
                   widget.item.message!,
@@ -354,4 +333,3 @@ class _ScoreItemState extends State<ScoreItem> {
     );
   }
 }
- */

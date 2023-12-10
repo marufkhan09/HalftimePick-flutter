@@ -200,18 +200,22 @@ class _PickOddsPageState extends State<PickOddsPage> {
         currentDate.isBefore(element.endDate.add(Duration(days: 1))));
     print(a);
 
-    weekModels.elementAt(a).isSelected = true;
-    nflWeekStartDate = weekModels.elementAt(a).startDate;
-    nflWeekEndDate = weekModels.elementAt(a).endDate;
+    if (a != -1) {
+      weekModels.elementAt(a).isSelected = true;
+      nflWeekStartDate = weekModels.elementAt(a).startDate;
+      nflWeekEndDate = weekModels.elementAt(a).endDate;
+    }
   }
 
   getCurrentNcaafWeek(List<WeekModel> weekModels, DateTime currentDate) {
     var a = weekModels.indexWhere((element) =>
         currentDate.isBefore(element.endDate.add(Duration(days: 1))));
     print(a);
-    weekModels.elementAt(a).isSelected = true;
-    ncaafWeekStartDate = weekModels.elementAt(a).startDate;
-    ncaafWeekEndDate = weekModels.elementAt(a).endDate;
+    if (a != -1) {
+      weekModels.elementAt(a).isSelected = true;
+      ncaafWeekStartDate = weekModels.elementAt(a).startDate;
+      ncaafWeekEndDate = weekModels.elementAt(a).endDate;
+    }
   }
 
   currentGame() {

@@ -7,6 +7,7 @@ import 'package:halftimepick/models/calendermodel.dart';
 import 'package:halftimepick/utils/colors.dart';
 import 'package:halftimepick/utils/shared_pref.dart';
 import 'package:halftimepick/views/screens/scores/scoreItem.dart';
+import 'package:halftimepick/views/screens/scores/scoreItemredo.dart';
 import 'package:intl/intl.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
@@ -17,7 +18,6 @@ class ScoresPage extends StatefulWidget {
   @override
   State<ScoresPage> createState() => _ScoresPageState();
 }
-
 
 class _ScoresPageState extends State<ScoresPage>
     with SingleTickerProviderStateMixin {
@@ -193,9 +193,8 @@ class _ScoresPageState extends State<ScoresPage>
                       currentMonth.elementAt(index).isselected = true;
 
                       eventController.ncaafEventloading.value = false;
-                     
+
                       eventController.nflEventloading.value = false;
-                    
 
                       eventController.mlbEventloading.value = false;
                       eventController.getMlbEvents(
@@ -301,7 +300,7 @@ class _ScoresPageState extends State<ScoresPage>
                                   // onTap: () {
                                   //   Get.toNamed(scoredetailPage);
                                   // },
-                                  child: ScoreItem(
+                                  child: ScoreItemRedo(
                                 item: controller.nhlgamedata.elementAt(index),
                               ));
                             },
@@ -383,7 +382,7 @@ class _ScoresPageState extends State<ScoresPage>
                                   // onTap: () {
                                   //   Get.toNamed(scoredetailPage);
                                   // },
-                                  child: ScoreItem(
+                                  child: ScoreItemRedo(
                                 item: controller.nbagamedata.elementAt(index),
                               ));
                             },
@@ -458,7 +457,7 @@ class _ScoresPageState extends State<ScoresPage>
                               );
                             },
                             itemBuilder: (BuildContext context, int index) {
-                              return ScoreItem(
+                              return ScoreItemRedo(
                                 item: controller.wnbagamedata.elementAt(index),
                               );
                             },
@@ -536,7 +535,7 @@ class _ScoresPageState extends State<ScoresPage>
                                   // onTap: () {
                                   //   Get.toNamed(scoredetailPage);
                                   // },
-                                  child: ScoreItem(
+                                  child: ScoreItemRedo(
                                 item: controller.mlbgamedata.elementAt(index),
                               ));
                             },
@@ -614,7 +613,7 @@ class _ScoresPageState extends State<ScoresPage>
                                   // onTap: () {
                                   //   Get.toNamed(scoredetailPage);
                                   // },
-                                  child: ScoreItem(
+                                  child: ScoreItemRedo(
                                 item: controller.nflgamedata.elementAt(index),
                               ));
                             },
@@ -693,7 +692,7 @@ class _ScoresPageState extends State<ScoresPage>
                                   // onTap: () {
                                   //   Get.toNamed(scoredetailPage);
                                   // },
-                                  child: ScoreItem(
+                                  child: ScoreItemRedo(
                                 item: controller.ncaafgamedata.elementAt(index),
                               ));
                             },
@@ -772,7 +771,7 @@ class _ScoresPageState extends State<ScoresPage>
                                   // onTap: () {
                                   //   Get.toNamed(scoredetailPage);
                                   // },
-                                  child: ScoreItem(
+                                  child: ScoreItemRedo(
                                 item: controller.ncaabgamedata.elementAt(index),
                               ));
                             },

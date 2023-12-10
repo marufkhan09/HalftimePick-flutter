@@ -4,7 +4,6 @@ import 'package:halftimepick/controllers/home_controller.dart';
 import 'package:halftimepick/controllers/splash_controller.dart';
 import 'package:halftimepick/utils/colors.dart';
 import 'package:halftimepick/utils/routes.dart';
-import 'package:halftimepick/utils/timeZone_format.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -25,7 +24,6 @@ class _HomePageState extends State<HomePage> {
     "4.png", //nhl
     "2.png", //wnba
   ];
-
 
   @override
   Widget build(BuildContext context) {
@@ -102,7 +100,7 @@ class _HomePageState extends State<HomePage> {
                       child: Container(
                         color: ProjectColors.primaryColor,
                         padding: const EdgeInsets.symmetric(horizontal: 12),
-                        height: 50,
+                        height: 54,
                         width: double.infinity,
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -121,7 +119,8 @@ class _HomePageState extends State<HomePage> {
                                   controller.gamename
                                       .elementAt(index)
                                       .sportName!,
-                                  style: const TextStyle(color: Colors.white),
+                                  style: const TextStyle(
+                                      color: Colors.white, fontSize: 16),
                                 ),
                               ],
                             ),

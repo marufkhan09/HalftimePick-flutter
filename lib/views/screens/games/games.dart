@@ -12,7 +12,7 @@ import 'package:halftimepick/models/weekmode.dart';
 import 'package:halftimepick/utils/colors.dart';
 import 'package:halftimepick/utils/dimensions.dart';
 import 'package:halftimepick/utils/routes.dart';
-import 'package:halftimepick/views/screens/scores/scoreItem.dart';
+import 'package:halftimepick/views/screens/scores/ScoreItemRedo.dart';
 import 'package:halftimepick/views/screens/scores/scorespage.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
@@ -139,19 +139,22 @@ class _SpecificGamesPageState extends State<SpecificGamesPage> {
     var a = weekModels.indexWhere((element) =>
         currentDate.isBefore(element.endDate.add(Duration(days: 1))));
     print(a);
-
-    weekModels.elementAt(a).isSelected = true;
-    nflWeekStartDate = weekModels.elementAt(a).startDate;
-    nflWeekEndDate = weekModels.elementAt(a).endDate;
+    if (a != -1) {
+      weekModels.elementAt(a).isSelected = true;
+      nflWeekStartDate = weekModels.elementAt(a).startDate;
+      nflWeekEndDate = weekModels.elementAt(a).endDate;
+    }
   }
 
   getCurrentNcaafWeek(List<WeekModel> weekModels, DateTime currentDate) {
     var a = weekModels.indexWhere((element) =>
         currentDate.isBefore(element.endDate.add(Duration(days: 1))));
-    print(a);
-    weekModels.elementAt(a).isSelected = true;
-    ncaafWeekStartDate = weekModels.elementAt(a).startDate;
-    ncaafWeekEndDate = weekModels.elementAt(a).endDate;
+    print("Current:::::" + a.toString());
+    if (a != -1) {
+      weekModels.elementAt(a).isSelected = true;
+      ncaafWeekStartDate = weekModels.elementAt(a).startDate;
+      ncaafWeekEndDate = weekModels.elementAt(a).endDate;
+    }
   }
 
   ncaafCalender() {
@@ -162,7 +165,7 @@ class _SpecificGamesPageState extends State<SpecificGamesPage> {
       for (int i = 0; i < 5; i++) {
         // Iterate 4 days (Tuesday to Saturday)
         days.add(currentNcaafWeek);
-        currentNcaafWeek = currentNcaafWeek.add(Duration(days: 1));
+        currentNcaafWeek = currentNcaafWeek.add(const Duration(days: 1));
       }
 
       WeekModel week = WeekModel(
@@ -173,8 +176,8 @@ class _SpecificGamesPageState extends State<SpecificGamesPage> {
 
       ncaafweekModels.add(week);
 
-      currentNcaafWeek =
-          currentNcaafWeek.add(Duration(days: 2)); // Skip Monday to Wednesday
+      currentNcaafWeek = currentNcaafWeek
+          .add(const Duration(days: 2)); // Skip Monday to Wednesday
     }
   }
 
@@ -638,7 +641,7 @@ class _SpecificGamesPageState extends State<SpecificGamesPage> {
                                           itemBuilder: (BuildContext context,
                                               int index) {
                                             return InkWell(
-                                                child: ScoreItem(
+                                                child: ScoreItemRedo(
                                               item: controller.ncaabgamedata
                                                   .elementAt(index),
                                             ));
@@ -682,7 +685,7 @@ class _SpecificGamesPageState extends State<SpecificGamesPage> {
                                                   (BuildContext context,
                                                       int index) {
                                                 return InkWell(
-                                                    child: ScoreItem(
+                                                    child: ScoreItemRedo(
                                                   item: controller.nbagamedata
                                                       .elementAt(index),
                                                 ));
@@ -727,7 +730,7 @@ class _SpecificGamesPageState extends State<SpecificGamesPage> {
                                                       (BuildContext context,
                                                           int index) {
                                                     return InkWell(
-                                                        child: ScoreItem(
+                                                        child: ScoreItemRedo(
                                                       item: controller
                                                           .wnbagamedata
                                                           .elementAt(index),
@@ -775,7 +778,8 @@ class _SpecificGamesPageState extends State<SpecificGamesPage> {
                                                           (BuildContext context,
                                                               int index) {
                                                         return InkWell(
-                                                            child: ScoreItem(
+                                                            child:
+                                                                ScoreItemRedo(
                                                           item: controller
                                                               .mlbgamedata
                                                               .elementAt(index),
@@ -832,7 +836,7 @@ class _SpecificGamesPageState extends State<SpecificGamesPage> {
                                                                 //       scoredetailPage);
                                                                 // },
                                                                 child:
-                                                                    ScoreItem(
+                                                                    ScoreItemRedo(
                                                               item: controller
                                                                   .nflgamedata
                                                                   .elementAt(
@@ -893,7 +897,7 @@ class _SpecificGamesPageState extends State<SpecificGamesPage> {
                                                                       int index) {
                                                                 return InkWell(
                                                                     child:
-                                                                        ScoreItem(
+                                                                        ScoreItemRedo(
                                                                   item: controller
                                                                       .ncaafgamedata
                                                                       .elementAt(
@@ -949,7 +953,7 @@ class _SpecificGamesPageState extends State<SpecificGamesPage> {
                                                                   (BuildContext
                                                                           context,
                                                                       int index) {
-                                                                return ScoreItem(
+                                                                return ScoreItemRedo(
                                                                   item: controller
                                                                       .nhlgamedata
                                                                       .elementAt(

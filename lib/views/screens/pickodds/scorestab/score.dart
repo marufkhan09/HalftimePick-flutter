@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:halftimepick/controllers/events_controller.dart';
 import 'package:halftimepick/controllers/splash_controller.dart';
 import 'package:halftimepick/views/screens/scores/scoreItem.dart';
+import 'package:halftimepick/views/screens/scores/scoreItemredo.dart';
 
 class ScoreTab extends StatefulWidget {
   const ScoreTab({super.key});
@@ -48,7 +49,7 @@ class _ScoreTabState extends State<ScoreTab> {
                                   itemBuilder:
                                       (BuildContext context, int index) {
                                     return InkWell(
-                                        child: ScoreItem(
+                                        child: ScoreItemRedo(
                                       item: controller.ncaabgamedata
                                           .elementAt(index),
                                     ));
@@ -87,7 +88,7 @@ class _ScoreTabState extends State<ScoreTab> {
                                       itemBuilder:
                                           (BuildContext context, int index) {
                                         return InkWell(
-                                            child: ScoreItem(
+                                            child: ScoreItemRedo(
                                           item: controller.nbagamedata
                                               .elementAt(index),
                                         ));
@@ -126,7 +127,7 @@ class _ScoreTabState extends State<ScoreTab> {
                                           itemBuilder: (BuildContext context,
                                               int index) {
                                             return InkWell(
-                                                child: ScoreItem(
+                                                child: ScoreItemRedo(
                                               item: controller.wnbagamedata
                                                   .elementAt(index),
                                             ));
@@ -170,7 +171,7 @@ class _ScoreTabState extends State<ScoreTab> {
                                                   (BuildContext context,
                                                       int index) {
                                                 return InkWell(
-                                                    child: ScoreItem(
+                                                    child: ScoreItemRedo(
                                                   item: controller.mlbgamedata
                                                       .elementAt(index),
                                                 ));
@@ -219,7 +220,7 @@ class _ScoreTabState extends State<ScoreTab> {
                                                         //   Get.toNamed(
                                                         //       scoredetailPage);
                                                         // },
-                                                        child: ScoreItem(
+                                                        child: ScoreItemRedo(
                                                       item: controller
                                                           .nflgamedata
                                                           .elementAt(index),
@@ -268,7 +269,7 @@ class _ScoreTabState extends State<ScoreTab> {
                                                           (BuildContext context,
                                                               int index) {
                                                         return InkWell(
-                                                            child: ScoreItem(
+                                                            child: ScoreItemRedo(
                                                           item: controller
                                                               .ncaafgamedata
                                                               .elementAt(index),
@@ -316,7 +317,7 @@ class _ScoreTabState extends State<ScoreTab> {
                                                       itemBuilder:
                                                           (BuildContext context,
                                                               int index) {
-                                                        return ScoreItem(
+                                                        return ScoreItemRedo(
                                                           item: controller
                                                               .nhlgamedata
                                                               .elementAt(index),
