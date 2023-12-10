@@ -6,7 +6,6 @@ import 'package:halftimepick/controllers/splash_controller.dart';
 import 'package:halftimepick/models/calendermodel.dart';
 import 'package:halftimepick/utils/colors.dart';
 import 'package:halftimepick/utils/shared_pref.dart';
-import 'package:halftimepick/views/screens/scores/scoreItem.dart';
 import 'package:halftimepick/views/screens/scores/scoreItemredo.dart';
 import 'package:intl/intl.dart';
 import 'package:intl/date_symbol_data_local.dart';

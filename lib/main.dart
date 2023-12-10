@@ -12,7 +12,6 @@ import 'package:halftimepick/views/screens/landing/landingpage.dart';
 import 'package:halftimepick/views/screens/news/newspage.dart';
 import 'package:halftimepick/views/screens/news/newstile/newsdetailweb.dart';
 import 'package:halftimepick/views/screens/pickodds/pickoddspage.dart';
-import 'package:halftimepick/views/screens/scores/scorespage.dart';
 import 'package:halftimepick/views/screens/splash.dart';
 
 void main() async {
@@ -130,42 +129,6 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
   }
 
   @override
-  // Widget build(BuildContext context) {
-  //   Brightness brightness = MediaQuery.of(context).platformBrightness;
-  //   print(brightness.toString());
-  //   return GetMaterialApp(
-  //     debugShowCheckedModeBanner: false,
-  //     theme: _buildTheme(brightness),
-  //     themeMode: ThemeMode.system,
-  //     home: const Splash(),
-  //     navigatorKey: navigatorKey,
-  //     getPages: [
-  //       GetPage(
-  //         name: homePage,
-  //         page: () => const HomePage(),
-  //       ),
-  //       GetPage(
-  //         name: newsPage,
-  //         page: () => const NewsPage(),
-  //       ),
-  //       GetPage(
-  //         name: scoresPage,
-  //         page: () => const ScoresPage(),
-  //       ),
-  //       GetPage(
-  //         name: pickOddsPage,
-  //         page: () => const PickOddsPage(),
-  //       ),
-  //       GetPage(
-  //         name: landingpage,
-  //         page: () => const LandingPage(),
-  //       ),
-  //       GetPage(name: newsdetailwebview, page: () => const NewsDetailWebView()),
-  //       GetPage(name: gamespage, page: () => const SpecificGamesPage()),
-  //     ],
-  //   );
-  // }
-
   Widget build(BuildContext context) {
     Brightness brightness = MediaQuery.of(context).platformBrightness;
     print(brightness.toString());
@@ -191,10 +154,6 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
         GetPage(
           name: newsPage,
           page: () => const NewsPage(),
-        ),
-        GetPage(
-          name: scoresPage,
-          page: () => const ScoresPage(),
         ),
         GetPage(
           name: pickOddsPage,

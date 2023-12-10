@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:halftimepick/controllers/events_controller.dart';
 import 'package:halftimepick/controllers/splash_controller.dart';
-import 'package:halftimepick/views/screens/scores/scoreItem.dart';
 import 'package:halftimepick/views/screens/scores/scoreItemredo.dart';
 
 class ScoreTab extends StatefulWidget {
