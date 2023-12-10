@@ -348,12 +348,12 @@ class _PickOddsPageState extends State<PickOddsPage> {
                     },
                     child: Container(
                       alignment: Alignment.center,
-                      width: 60,
+                      width: 64,
                       child: Text(
                         games.elementAt(index).name,
                         maxLines: 1,
                         style: TextStyle(
-                            fontSize: 12,
+                            fontSize: 14,
                             color: games.elementAt(index).isselected == true
                                 ? ProjectColors.bottomnavselectedcolor
                                 : Colors.white,
@@ -419,12 +419,12 @@ class _PickOddsPageState extends State<PickOddsPage> {
                           margin: const EdgeInsets.only(left: 5, right: 5),
                           child: Container(
                             alignment: Alignment.center,
-                            width: 50,
+                            width: 54,
                             child: Text(
                               currentMonth.elementAt(index).date,
                               maxLines: 1,
                               style: TextStyle(
-                                  fontSize: 11,
+                                  fontSize: 12,
                                   color: currentMonth[index].isselected == true
                                       ? Colors.blue
                                       : Colors.white,
@@ -470,7 +470,7 @@ class _PickOddsPageState extends State<PickOddsPage> {
                           margin: const EdgeInsets.only(left: 5, right: 5),
                           child: Container(
                             alignment: Alignment.center,
-                            width: 76,
+                            width: 80,
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.center,
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -479,7 +479,7 @@ class _PickOddsPageState extends State<PickOddsPage> {
                                   "Week ${index + 1}",
                                   maxLines: 1,
                                   style: TextStyle(
-                                      fontSize: 11,
+                                      fontSize: 12,
                                       color: nflweekModels[index].isSelected ==
                                               true
                                           ? Colors.blue
@@ -490,7 +490,7 @@ class _PickOddsPageState extends State<PickOddsPage> {
                                   "${returnDay(nflweekModels.elementAt(index).startDate)} - ${returnDay(nflweekModels.elementAt(index).endDate)}",
                                   maxLines: 1,
                                   style: TextStyle(
-                                      fontSize: 8,
+                                      fontSize: 9,
                                       color: nflweekModels[index].isSelected ==
                                               true
                                           ? Colors.blue
@@ -543,12 +543,12 @@ class _PickOddsPageState extends State<PickOddsPage> {
                               margin: const EdgeInsets.only(left: 5, right: 5),
                               child: Container(
                                 alignment: Alignment.center,
-                                width: 76,
+                                width: 80,
                                 child: Text(
                                   "Week ${index + 1}",
                                   maxLines: 1,
                                   style: TextStyle(
-                                      fontSize: 11,
+                                      fontSize: 12,
                                       color:
                                           ncaafweekModels[index].isSelected ==
                                                   true
@@ -562,7 +562,7 @@ class _PickOddsPageState extends State<PickOddsPage> {
                               "${returnDay(ncaafweekModels.elementAt(index).startDate)} - ${returnDay(ncaafweekModels.elementAt(index).endDate)}",
                               maxLines: 1,
                               style: TextStyle(
-                                  fontSize: 8,
+                                  fontSize: 9,
                                   color:
                                       ncaafweekModels[index].isSelected == true
                                           ? Colors.blue
